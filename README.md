@@ -8,7 +8,7 @@ Dans le jeu de Inazuma Eleven, un deck de cartes se réfère à une sélection s
 ### 3.1. API
 Nous allons créer une API contenant toutes les cartes de la premiére extension.
 ### 3.2. Front ✍️
-Le front sera fait en React et Rails sera utiliser
+Rails sera utiliser pour faire le front de l'application tandis que Ruby on rails sera utilisé pour le back
 # 5.Version 1
 Le site permet de visionner et de filtrer toutes les cartes du pack de départ.
 L'utilisateur peut créer et modifier ses decks.
