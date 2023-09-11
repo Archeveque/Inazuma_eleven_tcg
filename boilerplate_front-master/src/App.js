@@ -7,6 +7,7 @@ import PostList from './components/PostList';
 import CreatePost from './components/CreatePostButton';
 import Logout from './components/logout';
 import Cookies from 'js-cookie';
+import Navbar from './components/navbar'
 import "./App.css";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
 
   return (
     <div class="bg-dark">
+      <Navbar />
       <h1>Mon application</h1>
       {user.isLoggedIn ? (
         <div>

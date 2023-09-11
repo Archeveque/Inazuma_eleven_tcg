@@ -1,9 +1,17 @@
 .App {
-  text-align: center;
   background-color:#282c34;
   color: white;
 }
+nav {
+  padding:10px;
+}
 
+.mainlogo{
+  width: 250px;
+}
+nav.li {
+  float: left;
+} 
 body {
   text-align: center;
   background-color:#282c34;
