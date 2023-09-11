@@ -1,14 +1,22 @@
 import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { useAtom } from 'jotai';
 import { userAtom } from './atom';
-import Register from './page/register';
-import Login from './page/login';
+import Register from './components/register';
+import Login from './components/login';
 import PostList from './components/PostList';
 import CreatePost from './components/CreatePostButton';
 import Logout from './components/logout';
 import Cookies from 'js-cookie';
 import Navbar from './components/navbar'
 import "./App.css";
+import Home from './pages/Home';
+import About from './pages/About';
+import Catalog from './pages/Catalog';
+import Deckbuilder from './pages/Deckbuilder';
+import Decks from './pages/Decks';
+import LoginPage from './pages/LoginPage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [user] = useAtom(userAtom);
@@ -28,9 +36,17 @@ function App() {
   }, []);
 
   return (
-    <div class="bg-dark">
+    <BrowserRouter>
+    <div>
       <Navbar />
-      <h1>Mon application</h1>
+      <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/Catalog" element={<Catalog />} />
+          <Route path="/Deckbuilder" element={<Deckbuilder />} />
+          <Route path="/Decks" element={<Decks />} />
+          <Route path="/Login" element={<LoginPage />} />
+        </Routes>
       {user.isLoggedIn ? (
         <div>
           <p>Bienvenue, Utilisateur n°{user.id} !</p>
@@ -40,11 +56,11 @@ function App() {
         </div>
       ) : (
         <div>
-          <Register />
-          <Login />
+          <p>you aren't loged</p>
         </div>
       )}
     </div>
+    </BrowserRouter>
   );
 }
 

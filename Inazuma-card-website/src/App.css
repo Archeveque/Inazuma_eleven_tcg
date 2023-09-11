@@ -1,58 +1,134 @@
-.App {
-  background-color:#282c34;
-  color: white;
-}
-nav {
-  padding:10px;
-}
+/* ==================== Main Body ==================== */
+  .App {
+    background-color:#282c34;
+    color: white;
+  }
+  body {
+    text-align: center;
+    background-color:#282c34;
+    color: white;
+  }
+/* ==================== Navbar ==================== */
+  nav {
+    padding:10px;
+    display:flex;
+    justify-content:space-between;
+  }
+  nav a{
+    margin-left: 20px;
+    font-size: 200%;
+  }
+  .mainlogo{
+    width: 250px;
+    justify-content:flex-start;
+  }
+  nav.shadow{
+    box-shadow:0px 10px 10px black;
+  }
+/* ==================== Colors ==================== */
+  .primary{
+    color:#c93535;
+  }
+  .secondary{
+    color:#fe7a00
+  }
+  .danger{
+    color:red;
+  }
+  .info{
+    color:#354cc9;
+  }
+  .success{
+    color: #11982f;
+  }
+  .dark{
+    color:black;
+  }
+  /* backgrounds */
+  .bg-primary{
+    background-color: #c93535;
+    color: white;
+  }
+  .bg-secondary{
+    background-color: #fe7a00;
+    color: white;
+  }
+  .bg-danger{
+    background-color: #ff0000;
+    color: white;
+  }
+  .bg-info{
+    background-color: #354cc9;
+    color: white;
+  }
+  .bg-success{
+    background-color: #11982f;
+    color: white;
+  }
+  .bg-dark{
+    background-color: black;
+    color: white;
+  }
 
-.mainlogo{
-  width: 250px;
-}
-nav.li {
-  float: left;
-} 
-body {
-  text-align: center;
-  background-color:#282c34;
-  color: white;
-}
-input {
-  background-color:#33353a;
-  color: white;
-  border:solid rgb(31, 31, 31) 1px ;
-  border-radius: 4px;
-  padding: 3px;
-}
-textarea {
-  background-color:#33353a;
-  color: white;
-  border:solid rgb(31, 31, 31) 1px ;
-  border-radius: 4px;
-  padding: 3px;
-}
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* ==================== Components ==================== */
+  alignrow {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  input {
+    background-color:#33353a;
+    color: white;
+    border:solid rgb(31, 31, 31) 1px ;
+    border-radius: 4px;
+    padding: 3px;
+  }
+  textarea {
+    background-color:#33353a;
+    color: white;
+    border:solid rgb(31, 31, 31) 1px ;
+    border-radius: 4px;
+    padding: 3px;
+  }
 
-button{
-  padding: 5px;
-  border-radius: 8px;
-  border:solid;
-}
+/* ==================== Button territory ==================== */
+  button{
+    padding: 5px;
+    border-radius: 8px;
+    border:none;
+    box-shadow: 3px 3px 10px black;
+  }
 
-.bg-primary{
-  background-color: rgb(192, 52, 52);
-  border-color: rgb(192, 52, 52);
-  color: white;
-}
-button.bg-primary:hover{
-  background-color: rgb(255, 112, 46);
-  border-color: rgb(255, 112, 46);
-  color: white;
-}
+  button.bg-primary:hover{
+    background-color: #fe7a00;
+    color: white;
+  }
 
+  button.bg-secondary:hover{
+    background-color: #FFAD32;
+    color: white;
+  }
+
+  button.bg-danger:hover{
+    background-color: #ff0000;
+    border:solid white;
+    color: white;
+  }
+
+  button.bg-info:hover{
+    background-color: #4b63df;
+    color: white;
+  }
+
+  button.bg-success:hover{
+    background-color: #44ab5a;
+    color: white;
+  }
+/* ==================== Cards Kingdom ==================== */
+
+
+
+/* ==================== was already there ==================== */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
