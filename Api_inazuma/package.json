@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "insomnia-plugin-get-access-token": "^1.1.0"
+  }
+}

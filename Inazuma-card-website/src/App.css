@@ -20,12 +20,16 @@ body {
 input {
   background-color:#33353a;
   color: white;
+  border:solid rgb(31, 31, 31) 1px ;
+  border-radius: 4px;
+  padding: 3px;
 }
 textarea {
   background-color:#33353a;
   color: white;
+  border:solid rgb(31, 31, 31) 1px ;
   border-radius: 4px;
-  border-color: #33353a;
+  padding: 3px;
 }
 .App-logo {
   height: 40vmin;
@@ -34,7 +38,8 @@ textarea {
 
 button{
   padding: 5px;
-  border-radius: 4px;
+  border-radius: 8px;
+  border:solid;
 }
 
 .bg-primary{

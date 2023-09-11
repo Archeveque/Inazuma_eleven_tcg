@@ -1,4 +1,4 @@
-import logo from './../assets/inazumalogo.gif';
+import logo from '../assets/inazumalogo.gif';
 
 const Navbar = () =>
 <nav class="bg-primary">
