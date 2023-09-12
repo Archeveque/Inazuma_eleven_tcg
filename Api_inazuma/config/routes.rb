@@ -1,6 +1,7 @@
 # config/routes.rb
 
 Rails.application.routes.draw do
+  resources :starting_cards
   devise_for :users,
              controllers: {
                sessions: 'users/sessions',

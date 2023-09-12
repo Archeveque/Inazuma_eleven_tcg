@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_06_100453) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_12_124003) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -26,6 +26,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_100453) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["jti"], name: "index_jwt_denylist_on_jti"
+  end
+
+  create_table "starting_cards", force: :cascade do |t|
+    t.string "element"
+    t.string "name"
+    t.string "team"
+    t.string "position"
+    t.text "effect"
+    t.text "flavor"
+    t.integer "sp"
+    t.string "extension"
+    t.string "rarity"
+    t.integer "number"
+    t.integer "cardid"
+    t.string "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

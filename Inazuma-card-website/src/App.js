@@ -5,6 +5,7 @@ import { userAtom } from './atom';
 import Register from './components/register';
 import Login from './components/login';
 import PostList from './components/PostList';
+import CardList from './components/CardList';
 import CreatePost from './components/CreatePostButton';
 import Logout from './components/logout';
 import Cookies from 'js-cookie';

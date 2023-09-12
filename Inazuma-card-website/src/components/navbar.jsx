@@ -34,15 +34,15 @@ const Navbar = () => {
         <a href="/About">About</a>
       </div>
 
-      <div>
+      <div class="alignrow">
         {user.isLoggedIn ? (
-          <div>
+          <div class="alignrow">
             User n°{user.id}
             <Logout />
           </div>
         ) : (
-          <div>
-            <button class="bg-secondary">Login</button>
+          <div class="alignrow">
+            <a class="bg-secondary btn" href="/login">Login</a>
           </div>
         )}
       </div>
