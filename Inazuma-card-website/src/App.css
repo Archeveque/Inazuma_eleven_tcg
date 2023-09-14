@@ -168,7 +168,14 @@
   }
 
   .card-box{
-    box-shadow: 12px 12px 5px black ;
+    box-shadow: 15px 15px 5px black ;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    border: solid rgb(27, 27, 27) 1px;
+  }
+  .card-box:hover{
+    border: solid white 1px;
+    border-radius: 4px;
   }
 
 /* ==================== was already there ==================== */

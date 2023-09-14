@@ -19,6 +19,7 @@ function CardList() {
 
     fetchCards();
   }, []);
+  
 
   return (
     <div class="card-display container columns8">
