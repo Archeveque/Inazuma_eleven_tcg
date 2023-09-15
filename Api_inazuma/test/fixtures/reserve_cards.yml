@@ -1,0 +1,35 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  element: MyString
+  level: 1
+  name: MyString
+  team: MyString
+  position: MyString
+  effect: MyText
+  flavor: MyText
+  sp: 1
+  firesp: 1
+  ap: 1
+  extension: MyString
+  rarity: MyString
+  number: 1
+  cardid: 1
+  picture: MyString
+
+two:
+  element: MyString
+  level: 1
+  name: MyString
+  team: MyString
+  position: MyString
+  effect: MyText
+  flavor: MyText
+  sp: 1
+  firesp: 1
+  ap: 1
+  extension: MyString
+  rarity: MyString
+  number: 1
+  cardid: 1
+  picture: MyString

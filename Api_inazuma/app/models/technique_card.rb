@@ -1,0 +1,2 @@
+class TechniqueCard < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class GoalCard < ApplicationRecord
+end

@@ -1,6 +1,9 @@
 # config/routes.rb
 
 Rails.application.routes.draw do
+  resources :goal_cards
+  resources :technique_cards
+  resources :reserve_cards
   resources :starting_cards
   devise_for :users,
              controllers: {
