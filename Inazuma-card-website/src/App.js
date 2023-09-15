@@ -44,17 +44,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/About" element={<About />} />
           <Route path="/Catalog" element={<Catalog />} />
-          <Route path="/Deckbuilder" element={<Deckbuilder />} />
+          <Route path="/Deckbuilder/:id" element={<Deckbuilder />} />
           <Route path="/Decks" element={<Decks />} />
           <Route path="/Login" element={<LoginPage />} />
         </Routes>
       {user.isLoggedIn ? (
-        <div>
-          <p>Bienvenue, Utilisateur n°{user.id} !</p>
-          <PostList />
-          <CreatePost />
-          <Logout />
-        </div>
+        <div></div>
       ) : (
         <div>
           <p>you aren't loged</p>

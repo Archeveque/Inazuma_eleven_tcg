@@ -30,7 +30,7 @@ const Navbar = () => {
       <div class="alignrow">
         <a href="/">Home</a>
         <a href="/Catalog">Catalog</a>
-        <a href="/Deck">Decks</a>
+        <a href="/Decks">Decks</a>
         <a href="/About">About</a>
       </div>
 

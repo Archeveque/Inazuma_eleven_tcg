@@ -1,2 +1,12 @@
-const Decks = () => <h1>Decks</h1>
+import DeckList from '../../components/DeckList';
+
+const Decks = () => {
+
+  return (
+    <div>
+      <DeckList />
+    </div>
+
+  )
+}
 export default Decks;

@@ -113,6 +113,13 @@
   .columns8{
     columns:8;
   }
+  .columns4{
+    columns:4;
+  }
+  .columns2{
+    columns:2;
+  }
+
 
 /* ==================== Button territory ==================== */
   button{
@@ -161,10 +168,18 @@
     background-color: #44ab5a;
     color: white;
   }
-/* ==================== Cards Kingdom ==================== */
+/* ==================== Cards & Decks Kingdom ==================== */
 
   .card-display{
     
+  }
+  .deck-display{
+    margin: 20px;
+    border: solid black;
+    border-radius: 8px;
+  }
+  .deck-display:hover{
+    border: solid white;
   }
 
   .card-box{
