@@ -6,7 +6,7 @@ function CardList() {
   useEffect(() => {
     const fetchCards = () => {
       const cardarray=[];
-      fetch("http://localhost:3000/starting_cards", {
+      fetch("https://inazuma-tcg-api-879bee6c850b.herokuapp.com/starting_cards", {
         method: "get",
         headers: {
           "Content-Type": "application/json",
