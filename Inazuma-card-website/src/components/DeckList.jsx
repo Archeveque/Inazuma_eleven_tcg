@@ -6,7 +6,7 @@ const [decks, setDecks] = useState([]);
 
 useEffect(() => {
   const fetchDecks = () => {
-    fetch("http://localhost:3000/decks", {
+    fetch("https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks", {
       method: "get",
       headers: {
         "Content-Type": "application/json",

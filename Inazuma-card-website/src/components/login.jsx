@@ -15,7 +15,7 @@ function Login() {
 
     // Effectuer la requête fetch vers le backend Strapi pour l'authentification
     try {
-      const response = await fetch('http://localhost:3000/users/sign_in', {
+      const response = await fetch('https://inazuma-tcg-api-879bee6c850b.herokuapp.com/users/sign_in', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

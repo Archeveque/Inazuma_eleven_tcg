@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :technique_cards
   resources :reserve_cards
   resources :starting_cards
+  resources :decks
   devise_for :users,
              controllers: {
                sessions: 'users/sessions',

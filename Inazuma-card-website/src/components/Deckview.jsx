@@ -7,7 +7,7 @@ const [decks, setDecks] = useState([]);
 let { id } = useParams();
 useEffect(() => {
   const fetchDecks = () => {
-    const decklink = 'http://localhost:3000/decks/'+id
+    const decklink = 'https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/'+id
     fetch(decklink, {
       method: "get",
       headers: {

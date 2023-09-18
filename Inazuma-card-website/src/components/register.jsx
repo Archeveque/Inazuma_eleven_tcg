@@ -16,7 +16,7 @@ function SignupForm() {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:3000/users', {
+      const response = await fetch('https://inazuma-tcg-api-879bee6c850b.herokuapp.com/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

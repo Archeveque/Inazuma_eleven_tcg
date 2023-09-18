@@ -16,7 +16,7 @@ function CardList() {
         .then((responseData) => {
           responseData.map((data)  => cardarray.push(data));
         });
-        fetch("http://localhost:3000/technique_cards", {
+        fetch("https://inazuma-tcg-api-879bee6c850b.herokuapp.com/technique_cards", {
           method: "get",
           headers: {
             "Content-Type": "application/json",
@@ -27,7 +27,7 @@ function CardList() {
             responseData.map((data)  => cardarray.push(data));
           });
 
-    fetch("http://localhost:3000/reserve_cards", {
+    fetch("https://inazuma-tcg-api-879bee6c850b.herokuapp.com/reserve_cards", {
       method: "get",
       headers: {
         "Content-Type": "application/json",
