@@ -22,13 +22,13 @@ useEffect(() => {
 }, []);
 
 return (
-<div class="container columns8">
+<div class="container bordered">
 {decks.map((data) => (
-    <div class="deck-display" key={data.id}>
+    <div class="deck-display"key={data.id}>
       <div>
-        <img width="100%" src={deckicon} title={data.name} alt={data.name}></img>
+            <img src={deckicon} width="200px" title={data.name} alt={data.name}></img>
             <a class="btn bg-secondary" href={"/deckbuilder/" +data.id}>edit</a>
-        <p>{data.name} {data.id}</p>
+            <p>{data.name} {data.id}</p>
         </div>
     </div>
   ))}

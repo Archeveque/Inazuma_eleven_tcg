@@ -47,7 +47,7 @@ function CardList() {
   
 
   return (
-    <div class="card-display container columns8">
+    <div class="card-display container columns8 bordered">
       {cards.map((data) => (
         <div class="card-box" key={"card" + data.cardid}>
           <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>

@@ -119,7 +119,9 @@
   .columns2{
     columns:2;
   }
-
+  .bordered{
+    border:solid rgb(27, 27, 27) 5px;
+  }
 
 /* ==================== Button territory ==================== */
   button{
@@ -177,15 +179,17 @@
     margin: 20px;
     border: solid black;
     border-radius: 8px;
+    width: 200px;
   }
   .deck-display:hover{
     border: solid white;
   }
 
   .card-box{
-    box-shadow: 15px 15px 5px black ;
+    box-shadow: 10px 10px 5px rgb(17, 17, 17) ;
     margin-bottom: 20px;
-    margin-left: 10px;
+    margin-right: 2px;
+    margin-left: 2px;
     border: solid rgb(27, 27, 27) 1px;
   }
   .card-box:hover{

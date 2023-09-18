@@ -25,9 +25,9 @@ useEffect(() => {
 }, []);
 
 return (
-<div class="container columns8">
+<div class="container columns8 bordered">
 {decks.map((data) => (
-    <div class="card-box card-display">
+    <div width="200px"  class="card-box card-display">
       <div>
         <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
         <p>{data.name} {data.cardid}</p>
