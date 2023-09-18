@@ -55,6 +55,7 @@ def generateCards
     cardid: cardid,
     picture: "https://i.ibb.co/8mHzjT7/placeholder-inazuma.png",
   )
+  cardid =cardid +1;
   end
 
   puts "Starting Cards OK"
@@ -78,6 +79,7 @@ def generateCards
     cardid: cardid,
     picture: "https://i.ibb.co/8mHzjT7/placeholder-inazuma.png",
   )
+  cardid =cardid +1;
   end
 
   puts "Reserve Cards OK"
@@ -95,6 +97,7 @@ def generateCards
     cardid: cardid,
     picture: "https://i.ibb.co/8mHzjT7/placeholder-inazuma.png",
   )
+  cardid =cardid +1;
   end
   puts "Technique Cards OK"
 end
