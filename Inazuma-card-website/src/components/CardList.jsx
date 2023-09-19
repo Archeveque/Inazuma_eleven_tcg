@@ -6,7 +6,7 @@ function CardList() {
   useEffect(() => {
     const fetchCards = () => {
 
-    fetch("https://inazuma-tcg-api-879bee6c850b.herokuapp.com/starting_cards/all", {
+    fetch("https://inazuma-tcg-api-879bee6c850b.herokuapp.com/allcards", {
       method: "get",
       headers: {
         "Content-Type": "application/json",
