@@ -5,29 +5,8 @@ function CardList() {
 
   useEffect(() => {
     const fetchCards = () => {
-      const cardarray=[];
-      fetch("https://inazuma-tcg-api-879bee6c850b.herokuapp.com/starting_cards", {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((responseData) => {
-          responseData.map((data)  => cardarray.push(data));
-        });
-        fetch("https://inazuma-tcg-api-879bee6c850b.herokuapp.com/technique_cards", {
-          method: "get",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((response) => response.json())
-          .then((responseData) => {
-            responseData.map((data)  => cardarray.push(data));
-          });
 
-    fetch("https://inazuma-tcg-api-879bee6c850b.herokuapp.com/reserve_cards", {
+    fetch("https://inazuma-tcg-api-879bee6c850b.herokuapp.com/starting_cards/all", {
       method: "get",
       headers: {
         "Content-Type": "application/json",
@@ -35,10 +14,7 @@ function CardList() {
     })
       .then((response) => response.json())
       .then((responseData) => {
-        responseData.map((data)  => cardarray.push(data));
-        cardarray.sort((a, b) => (a.cardid > b.cardid) ? 1 : -1)
-        console.log(cardarray)
-        setCards(cardarray);
+        setCards(responseData);
       });
     };
 
