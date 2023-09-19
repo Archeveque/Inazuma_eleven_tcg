@@ -5,7 +5,7 @@ class StartingCardsController < ApplicationController
   def index
     @starting_cards = StartingCard.all
 
-    render json: @starting_cards
+    render json: @starting_cards.map { |card| card.attributes.merge({ cardType: 'starting' }) }
   end
 
   # GET /starting_cards/1

@@ -5,7 +5,7 @@ class ReserveCardsController < ApplicationController
   def index
     @reserve_cards = ReserveCard.all
 
-    render json: @reserve_cards
+    render json: @reserve_cards.map { |card| card.attributes.merge({ cardType: 'reserve' }) }
   end
 
   # GET /reserve_cards/1
