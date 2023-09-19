@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :reserve_cards
   resources :starting_cards
   resources :decks
+  ressources :allcards
   get '/decks/:id/starting/:cardid', to: 'decks#starting'
   get '/decks/:id/reserve/:cardid', to: 'decks#reserve'
   get '/decks/:id/technique/:cardid', to: 'decks#technique'
