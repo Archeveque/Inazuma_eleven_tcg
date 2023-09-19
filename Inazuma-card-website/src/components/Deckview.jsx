@@ -17,6 +17,9 @@ function Deckview() {
         .then((responseData) => {
             responseData.sort((a, b) => (a.cardid > b.cardid) ? 1 : -1);
             setDecks(responseData);
+        })
+        .catch(error => {
+            console.error("There was an error fetching the data:", error);
         });
     }
 
@@ -25,10 +28,7 @@ function Deckview() {
     }, []);
 
     const handleDelete = (idcard, cardType) => {
-        // Construisez l'URL en fonction du type de carte
-        let deleteUrl = `https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/${id}/${cardType}/${idcard}`;
-
-        fetch(deleteUrl, {
+        fetch(`https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/${id}/${cardType}/${idcard}`, {
             method: 'DELETE'
         })
         .then(res => res.json())
@@ -46,8 +46,7 @@ function Deckview() {
                     <div>
                         <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
                         <p>{data.name} {data.cardid}</p>
-                        {/* Notez comment j'ai ajouté data.cardType à l'appel handleDelete */}
-                        <button onClick={() => handleDelete(data.id, data.cardType)}>delete</button>
+                        <button onClick={() => handleDelete(data.id, data.cardtype)}>delete</button>
                     </div>
                 </div>
             ))}
