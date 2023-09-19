@@ -24,6 +24,16 @@ useEffect(() => {
     fetchDecks()
 }, []);
 
+function DelCard(idcard) {
+  const handleDelete = (idcard) => {
+    console.log("button pressed")
+    fetch('https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/'+id+'/start/'+idcard, {method: 'DELETE'})
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+
+}}
+
 return (
 <div class="container columns8 bordered">
 {decks.map((data) => (
@@ -31,6 +41,7 @@ return (
       <div>
         <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
         <p>{data.name} {data.cardid}</p>
+        {<button onClick={(data.id).handleDelete}>delete</button>}
         </div>
     </div>
   ))}

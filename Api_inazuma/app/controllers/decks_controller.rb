@@ -38,9 +38,25 @@ class DecksController < ApplicationController
     @deck.destroy
   end
 
+  #GET /decks/1/start/2
   def starting
-    card = @deck.starting_cards.find(params[:id])
-    card.destroy
+    @cardid = StartingCard.find(params[:cardid])
+    render json: @cardid
+  end
+
+  def reserve
+    @cardid = ReserveCard.find(params[:cardid])
+    render json: @cardid
+  end
+
+  def technique
+    @cardid = TechniqueCard.find(params[:cardid])
+    render json: @cardid
+  end
+
+  def goal
+    @cardid = GoalkeeperCard.find(params[:cardid])
+    render json: @cardid
   end
 
   private

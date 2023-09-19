@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :reserve_cards
   resources :starting_cards
   resources :decks
+  get '/decks/:id/start/:cardid', to: 'decks#starting'
+  get '/decks/:id/reserve/:cardid', to: 'decks#reserve'
+  get '/decks/:id/technique/:cardid', to: 'decks#technique'
+  get '/decks/:id/goal/:cardid', to: 'decks#goal'
   devise_for :users,
              controllers: {
                sessions: 'users/sessions',
