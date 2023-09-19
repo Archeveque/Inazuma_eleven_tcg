@@ -24,8 +24,11 @@ function Deckview() {
         fetchDecks();
     }, []);
 
-    const handleDelete = (idcard) => {
-        fetch('https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/' + id + '/start/' + idcard, {
+    const handleDelete = (idcard, cardType) => {
+        // Construisez l'URL en fonction du type de carte
+        let deleteUrl = `https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/${id}/${cardType}/${idcard}`;
+
+        fetch(deleteUrl, {
             method: 'DELETE'
         })
         .then(res => res.json())
@@ -43,7 +46,8 @@ function Deckview() {
                     <div>
                         <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
                         <p>{data.name} {data.cardid}</p>
-                        <button onClick={() => handleDelete(data.id)}>delete</button>
+                        {/* Notez comment j'ai ajouté data.cardType à l'appel handleDelete */}
+                        <button onClick={() => handleDelete(data.id, data.cardType)}>delete</button>
                     </div>
                 </div>
             ))}
