@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_15_092908) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_19_133737) do
   create_table "add_reserve_to_decks", force: :cascade do |t|
     t.integer "deck_id"
     t.integer "reserve_card_id"
@@ -66,6 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_092908) do
     t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cardtype"
   end
 
   create_table "jwt_denylist", force: :cascade do |t|
@@ -94,6 +95,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_092908) do
     t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cardtype"
   end
 
   create_table "starting_cards", force: :cascade do |t|
@@ -111,6 +113,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_092908) do
     t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cardtype"
   end
 
   create_table "technique_cards", force: :cascade do |t|
@@ -126,6 +129,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_092908) do
     t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cardtype"
   end
 
   create_table "todacks", force: :cascade do |t|

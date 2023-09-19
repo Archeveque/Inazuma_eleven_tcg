@@ -54,6 +54,7 @@ def generateCards
     number: cardid,
     cardid: cardid,
     picture: "https://i.ibb.co/8mHzjT7/placeholder-inazuma.png",
+    cardtype: "starting",
   )
   cardid =cardid +1;
   end
@@ -78,6 +79,7 @@ def generateCards
     number: cardid,
     cardid: cardid,
     picture: "https://i.ibb.co/8mHzjT7/placeholder-inazuma.png",
+    cardtype: "reserve",
   )
   cardid =cardid +1;
   end
@@ -96,6 +98,7 @@ def generateCards
     number: cardid,
     cardid: cardid,
     picture: "https://i.ibb.co/8mHzjT7/placeholder-inazuma.png",
+    cardtype: "technique",
   )
   cardid =cardid +1;
   end

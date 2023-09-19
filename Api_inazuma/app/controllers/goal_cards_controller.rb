@@ -5,7 +5,7 @@ class GoalCardsController < ApplicationController
   def index
     @goal_cards = GoalCard.all
 
-    render json: @goal_cards.map { |card| card.attributes.merge({ cardType: 'goalkeeper' }) }
+    render json: @goal_cards
   end
 
   # GET /goal_cards/1
