@@ -13,6 +13,11 @@ class StartingCardsController < ApplicationController
     render json: @starting_card
   end
 
+  def all
+    @allcards= StartingCard.all +ReserveCard.all +TechniqueCard.all
+    render json @allcards
+  end
+
   # POST /starting_cards
   def create
     @starting_card = StartingCard.new(starting_card_params)
