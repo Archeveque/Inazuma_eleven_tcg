@@ -98,21 +98,17 @@ function Deckview() {
             <div className=" columns8">
             {decks.map((data) => (
                 <div className="card-box card-display" key={data.id}>
-
-                    <div>
-                        {decks.map((data) => (
                             <div width="200px" className="card-box card-display" key={data.id}>
                                 <div>
                                     <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
                                     <p>{data.name} {data.cardid}</p>
                                 </div>
                             </div>
-                        ))}
-                    </div>
                 </div>
+            ))}
             </div>
         </div>
-    )
-}
+    )}
+
 
 export default Deckview;
