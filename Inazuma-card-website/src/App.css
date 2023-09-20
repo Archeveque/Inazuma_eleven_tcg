@@ -150,7 +150,10 @@
     background: linear-gradient(90deg, rgba(221,3,3,1) 0%, rgba(255,109,0,1) 24%, rgba(179,0,0,1) 100%);
     padding:10px;
   }
-
+  .align-top{
+    displya: flex;
+    justify-content: flex-end;
+  }
 /* ==================== Button territory ==================== */
   button{
     padding: 10px;

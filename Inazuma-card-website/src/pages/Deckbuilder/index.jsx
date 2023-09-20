@@ -4,13 +4,16 @@ import CardList from '../../components/CardList';
 const Decks = () => {
 
   return (
-    <div class=" container columns2">
-        <div>
-            <p>List of cards</p>
-        <CardList />
-        </div>
-      <Deckview />
-    </div>
+    <table>
+        <tr>
+          <td>
+            <CardList />
+          </td>
+          <td>
+            <Deckview />
+          </td>
+        </tr>
+    </table>
 
   )
 }
