@@ -3,7 +3,10 @@ import { useParams } from "react-router-dom";
 
 function Deckview() {
     const [decks, setDecks] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [availableCards, setAvailableCards] = useState([]);
     let { id } = useParams();
+    const API_URL = 'https://inazuma-tcg-api-879bee6c850b.herokuapp.com';
 
     const fetchDecks = () => {
         const decklink = 'https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/' + id;
@@ -23,61 +26,85 @@ function Deckview() {
         });
     }
 
+    const handleRemoveFromDeck = async (cardId) => {
+        try {
+            const response = await fetch(`${API_URL}/decks/${id}/cards/${cardId}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to remove the card from the deck");
+            }
+
+            // Update the state by removing the deleted card from the deck view
+            setDecks(prevDecks => prevDecks.filter(card => card.cardid !== cardId));
+        } catch (error) {
+            console.error("There was an error removing the card from the deck:", error);
+        }
+    };
+
     useEffect(() => {
         fetchDecks();
     }, []);
-    function findCardType(array, title) {
-        const test = array.filter((element) => {
-          return ( (element.cardtype === title));  
-        })
-        return test.length
-    }
-    function findCardPosition(array, title,position) {
-        const test = array.filter((element) => {
-            return ( (element.cardtype === title));  
-        })
-        const getpos = test.filter((element) => {
-            return ( (element.position === position));  
-        })
-        return getpos.length
-    }
-      
+    const handleCategorySelect = async (category) => {
+        setSelectedCategory(category);
+        try {
+            const response = await fetch(`${API_URL}/cards/category/${category}`);
+            if (!response.ok) {
+                throw new Error("Failed to fetch cards");
+            }
+            const cards = await response.json();
+            setAvailableCards(cards);
+        } catch (error) {
+            console.error("There was an error fetching the cards:", error);
+        }
+    };
+
+    const handleAddCardToDeck = (card) => {
+        // Here you can make an API call to add the card to the deck
+        // And then update the state
+        setDecks(prev => [...prev, card]);
+    };
+
     return (
-        <div class="container bordered">
-            <div class="gradient-box">
-                <p>Deckbuilding</p>
-            </div>
-            <table class="bg-grey bordered" width="100%">
-                <tr>
-                    <td> </td><td> Deck size : {decks.length-findCardType(decks,"starting")}/30 </td>
-                </tr>
-                <tr><td></td>
-                    <td>Reserve: {findCardType(decks,"reserve")}</td>
-                </tr>
-                <tr><td>Starting deck: {findCardType(decks,"starting")}/10</td>
-                    <td>FW:{findCardPosition(decks,"reserve","FW")}&nbsp;
-                        MF:{findCardPosition(decks,"reserve","MF")}&nbsp;
-                        DF:{findCardPosition(decks,"reserve","DF")}
-                    </td>
-                    </tr>
-                <tr>
-                    <td>FW:{findCardPosition(decks,"starting","FW")}&nbsp;
-                        MF:{findCardPosition(decks,"starting","MF")}&nbsp;
-                        DF:{findCardPosition(decks,"starting","DF")}
-                    </td>
-                    <td>Technique: {findCardType(decks,"technique")}</td>
-                    </tr>
-            </table>
-        <div className=" columns8">
-            {decks.map((data) => (
-                <div width="200px" className="card-box card-display" key={data.id}>
+        <div className="container bordered">
+            <div className="columns2">
+                {/* Left: Available cards based on selected category */}
+                <div>
+                    <p>Available Cards for {selectedCategory}</p>
+                    {availableCards.map(card => (
+                        <div key={card.cardid}>
+                            <img src={card.picture} alt={card.name} />
+                            <p>{card.name}</p>
+                            <button onClick={() => handleAddCardToDeck(card)}>Add to Deck</button>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Right: Deck view and category selection */}
+                <div>
+                    <p>Deckbuilding</p>
+                    {/* Category selection */}
                     <div>
-                        <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
-                        <p>{data.name} {data.cardid}</p>
+                        <button onClick={() => handleCategorySelect('Starting')}>Starting Cards</button>
+                        {/* Add more categories as needed */}
+                    </div>
+                    <div>
+                        {decks.map((data) => (
+                            <div width="200px" className="card-box card-display" key={data.id}>
+                                <div>
+                                    <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
+                                    <p>{data.name} {data.cardid}</p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
-            ))}
-        </div></div>
+            </div>
+        </div>
     )
 }
 
