@@ -17,6 +17,7 @@ import Catalog from './pages/Catalog';
 import Deckbuilder from './pages/Deckbuilder';
 import Decks from './pages/Decks';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           <Route path="/Deckbuilder/:id" element={<Deckbuilder />} />
           <Route path="/Decks" element={<Decks />} />
           <Route path="/Login" element={<LoginPage />} />
+          <Route path="/Register" element={<RegisterPage />} />
         </Routes>
       {user.isLoggedIn ? (
         <div></div>

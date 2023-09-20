@@ -38,34 +38,38 @@ function Login() {
           isLoggedIn: true,
         });
       } else {
-        setError('Identifiants invalides');
+        setError('Incorrect credentials');
       }
     } catch (error) {
-      setError('Une erreur s\'est produite');
+      setError('An error occured');
     }
   };
 
   return (
-    <div>
+    <div class="login bg-grey bordered centered shadowed">
       <form onSubmit={handleLogin}>
-        <h2>Se connecter</h2>
+        <h1>Sign In</h1>
         {error && <p>{error}</p>}
         <input
           type="text"
-          placeholder="Adresse email"
+          placeholder="Mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+        <br></br>
         <input
           type="password"
-          placeholder="Mot de passe"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button class="bg-primary" type="submit">Se connecter</button>
+        <br></br>
+        <button class="bg-primary" type="submit">Sign In</button>
       </form>
+      <br></br>
+      <a href="/register">Sign up now</a>
     </div>
   );
 }

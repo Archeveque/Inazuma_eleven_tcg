@@ -4,9 +4,7 @@ import Login from './../../components/login';
 const LoginPage = () => {
 
     return(
-    <div>
-        <h1>Login Page</h1>
-        <Register />
+    <div class ="container">
         <Login />
     </div>
 )}

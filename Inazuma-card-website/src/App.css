@@ -7,6 +7,7 @@
     text-align: center;
     background-color:#282c34;
     color: white;
+    font-size:20px;
   }
 /* ==================== Navbar ==================== */
   nav {
@@ -81,6 +82,10 @@
     background-color: black;
     color: white;
   }
+.bg-grey{
+  background-color: rgb(24, 24, 24);
+  color: white;
+}
 
 /* ==================== Components ==================== */
   .alignrow {
@@ -91,9 +96,11 @@
   input {
     background-color:#33353a;
     color: white;
-    border:solid rgb(31, 31, 31) 1px ;
-    border-radius: 4px;
-    padding: 3px;
+    border:solid rgb(0, 0, 0) 1px ;
+    border-radius: 10px;
+    padding: 10px;
+    margin:20px;
+    font-size:20px;
   }
   textarea {
     background-color:#33353a;
@@ -101,6 +108,19 @@
     border:solid rgb(31, 31, 31) 1px ;
     border-radius: 4px;
     padding: 3px;
+  }
+
+  .login{
+    width:30%;
+    padding: 30px;
+    border-radius: 10px;
+    height: 400px;
+  }
+
+  .centered{
+    margin-left: auto;
+    margin-right: auto;
+
   }
   .container{
     margin-left:64px;
@@ -122,12 +142,15 @@
   .bordered{
     border:solid rgb(27, 27, 27) 5px;
   }
+  .shadowed{
+    box-shadow: 10px 10px 5px rgb(17, 17, 17) ;
+  }
 
 /* ==================== Button territory ==================== */
   button{
     padding: 10px;
     margin:5px;
-    font-size:15px;
+    font-size:20px;
     border-radius: 8px;
     border:none;
     box-shadow: 3px 3px 10px black;

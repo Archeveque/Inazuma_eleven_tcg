@@ -40,20 +40,20 @@ function SignupForm() {
           isLoggedIn: true,
         });
       } else {
-        setError('Erreur lors de la création du compte');
+        setError('a Error occured while creating your account');
       }
     } catch (error) {
-      setError('Erreur lors de la création du compte');
+      setError('a Error occured while creating your account');
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Créer un compte</h2>
+      <h2>Create account</h2>
       {error && <p>{error}</p>}
       <div>
-        <label htmlFor="email">Email :</label>
         <input
+          placeholder="Email"
           type="email"
           id="email"
           value={email}
@@ -62,8 +62,8 @@ function SignupForm() {
         />
       </div>
       <div>
-        <label htmlFor="password">Mot de passe :</label>
         <input
+          placeholder="Password"
           type="password"
           id="password"
           value={password}
@@ -72,8 +72,8 @@ function SignupForm() {
         />
       </div>
       <div>
-        <label htmlFor="password">Confirme ton mot de passe :</label>
         <input
+          placeholder="Password Confirmation"
           type="password"
           id="password"
           value={password_confirmation}
@@ -81,7 +81,7 @@ function SignupForm() {
           required
         />
       </div>
-      <button class="bg-primary" type="submit">Créer un compte et se connecter</button>
+      <button class="bg-primary" type="submit">Sign up</button>
     </form>
   );
 }
