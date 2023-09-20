@@ -6,10 +6,10 @@ const Decks = () => {
 
     <table>
         <tr>
-          <td>
+          <td  width="100%" class="align-top">
             <CardList />
           </td>
-          <td>
+          <td  width="43%">
             <Deckview />
           </td>
         </tr>

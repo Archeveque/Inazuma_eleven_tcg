@@ -72,9 +72,10 @@ function Deckview() {
                     </tr>
                 </tbody>
             </table>
-            <div className="columns8">
+            <div className="card-display">
+
                 {decks.map((data, index) => (
-                    <div className="card-box card-display" key={index}>
+                    <div className="card-box " key={data.id}>
                         <div>
                             <img width="100%" src={data.picture} title={data.name} alt={data.name} />
                             <div className="card-details">

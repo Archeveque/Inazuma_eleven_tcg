@@ -151,8 +151,9 @@
     padding:10px;
   }
   .align-top{
-    displya: flex;
-    justify-content: flex-end;
+    display: flex;
+    justify-content:flex-start;
+    flex-wrap: wrap;
   }
 /* ==================== Button territory ==================== */
   button{
@@ -204,7 +205,8 @@
 /* ==================== Cards & Decks Kingdom ==================== */
 
   .card-display{
-    
+    display: flex;
+    flex-wrap: wrap;
   }
   .deck-display{
     margin: 20px;
@@ -217,6 +219,7 @@
   }
 
   .card-box{
+    width:120px;
     box-shadow: 10px 10px 5px rgb(17, 17, 17) ;
     margin-bottom: 20px;
     margin-right: 2px;
