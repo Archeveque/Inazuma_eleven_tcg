@@ -70,28 +70,35 @@ function Deckview() {
     };
 
     return (
-        <div className="container bordered">
-            <div className="columns2">
-                {/* Left: Available cards based on selected category */}
-                <div>
-                    <p>Available Cards for {selectedCategory}</p>
-                    {availableCards.map(card => (
-                        <div key={card.cardid}>
-                            <img src={card.picture} alt={card.name} />
-                            <p>{card.name}</p>
-                            <button onClick={() => handleAddCardToDeck(card)}>Add to Deck</button>
-                        </div>
-                    ))}
-                </div>
+        <div class="container bordered">
+            <div class="gradient-box">
+                <p>Deckbuilding</p>
+            </div>
+            <table class="bg-grey bordered" width="100%">
+                <tr>
+                    <td> </td><td> Deck size : {decks.length-findCardType(decks,"starting")}/30 </td>
+                </tr>
+                <tr><td></td>
+                    <td>Reserve: {findCardType(decks,"reserve")}</td>
+                </tr>
+                <tr><td>Starting deck: {findCardType(decks,"starting")}/10</td>
+                    <td>FW:{findCardPosition(decks,"reserve","FW")}&nbsp;
+                        MF:{findCardPosition(decks,"reserve","MF")}&nbsp;
+                        DF:{findCardPosition(decks,"reserve","DF")}
+                    </td>
+                    </tr>
+                <tr>
+                    <td>FW:{findCardPosition(decks,"starting","FW")}&nbsp;
+                        MF:{findCardPosition(decks,"starting","MF")}&nbsp;
+                        DF:{findCardPosition(decks,"starting","DF")}
+                    </td>
+                    <td>Technique: {findCardType(decks,"technique")}</td>
+                    </tr>
+            </table>
+            <div className=" columns8">
+            {decks.map((data) => (
+                <div className="card-box card-display" key={data.id}>
 
-                {/* Right: Deck view and category selection */}
-                <div>
-                    <p>Deckbuilding</p>
-                    {/* Category selection */}
-                    <div>
-                        <button onClick={() => handleCategorySelect('Starting')}>Starting Cards</button>
-                        {/* Add more categories as needed */}
-                    </div>
                     <div>
                         {decks.map((data) => (
                             <div width="200px" className="card-box card-display" key={data.id}>
