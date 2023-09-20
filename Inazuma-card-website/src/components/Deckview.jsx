@@ -112,17 +112,21 @@ function Deckview() {
                     <td>Technique: {findCardType(decks,"technique")}</td>
                     </tr>
             </table>
-            <div className=" columns8">
+            <div className="columns8">
             {decks.map((data) => (
-                <div className="card-box card-display" key={data.id}>
-                        <div>
-                            <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
-                                <p>{data.name} {data.cardid}</p>
+            <div className="card-box card-display" key={data.id}>
+                    <div>
+                        <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
+                        <div className="card-details">
+                            <h4>{data.name}</h4>  {/* Affichage du nom de la carte */}
+                            <p>Type: {data.cardtype}</p>  {/* Affichage du type de la carte */}
+                        </div>
+                        <button onClick={() => handleRemoveFromDeck(data.cardid)}>Retirer</button> {/* Bouton pour retirer la carte */}
                     </div>
-                </div>
-                ))}
             </div>
+            ))}
         </div>
+    </div>
     )
 }
 
