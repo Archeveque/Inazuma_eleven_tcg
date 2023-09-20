@@ -8,7 +8,7 @@ function CardList() {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await fetch(`${API_URL}/allcards`, {
+        const response = await fetch(`${API_URL}/allcards/category/${category}`, {
           method: "get",
           headers: {
             "Content-Type": "application/json",
