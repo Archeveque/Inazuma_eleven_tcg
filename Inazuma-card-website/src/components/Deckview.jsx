@@ -112,9 +112,9 @@ function Deckview() {
                     <td>Technique: {findCardType(decks,"technique")}</td>
                     </tr>
             </table>
-            <div className="columns8">
+            <div className="card-display">
             {decks.map((data) => (
-            <div className="card-box card-display" key={data.id}>
+            <div className="card-box " key={data.id}>
                     <div>
                         <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
                         <div className="card-details">

@@ -38,16 +38,16 @@ function CardList() {
   }
 
   return (
-    <div className="card-display container columns8 bordered">
+    <div className="container bordered ">
       <select value={category} onChange={e => setCategory(e.target.value)}>
         <option value="starting">Starting</option>
         <option value="reserve">Reserve</option>
         <option value="technique">Technique</option>
         <option value="goal">Goal</option>
       </select>
-
+    <div class="card-display">
       {cards.map((data) => (
-      <div className="card-box" key={"card" + data.cardid}>
+      <div className="card-box " key={"card" + data.cardid}>
         <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
         <div className="card-details">
           <h4>{data.name}</h4>  {/* Affichage du nom de la carte */}
@@ -56,7 +56,7 @@ function CardList() {
         <button onClick={() => handleAddToDeck(data)}>Ajouter au deck</button>
       </div>
     ))}
-  </div>
+  </div></div>
   );
 }
 
