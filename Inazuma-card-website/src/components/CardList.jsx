@@ -47,12 +47,16 @@ function CardList() {
       </select>
 
       {cards.map((data) => (
-        <div className="card-box" key={"card" + data.cardid}>
-          <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
-          <button onClick={() => handleAddToDeck(data)}>Ajouter au deck</button>
+      <div className="card-box" key={"card" + data.cardid}>
+        <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
+        <div className="card-details">
+          <h4>{data.name}</h4>  {/* Affichage du nom de la carte */}
+          <p>Type: {data.cardtype}</p>  {/* Affichage du type de la carte */}
         </div>
-      ))}
-    </div>
+        <button onClick={() => handleAddToDeck(data)}>Ajouter au deck</button>
+      </div>
+    ))}
+  </div>
   );
 }
 
