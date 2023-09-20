@@ -4,6 +4,7 @@ import deckicon from '../assets/deckbox480.png';
 function DeckList() {
 const [decks, setDecks] = useState([]);
 
+
 useEffect(() => {
   const fetchDecks = () => {
     fetch("https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks", {

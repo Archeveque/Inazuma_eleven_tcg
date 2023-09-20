@@ -2,8 +2,8 @@ import Deckview from '../../components/Deckview';
 import CardList from '../../components/CardList';
 
 const Decks = () => {
-
   return (
+
     <table>
         <tr>
           <td>
@@ -15,6 +15,8 @@ const Decks = () => {
         </tr>
     </table>
 
+
   )
 }
+
 export default Decks;
