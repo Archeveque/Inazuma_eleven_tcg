@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 function CardList() {
   const [cards, setCards] = useState([]);
+  const [category, setCategory] = useState('starting');  // valeur par défaut
   const API_URL = "https://inazuma-tcg-api-879bee6c850b.herokuapp.com";
 
   useEffect(() => {
@@ -26,7 +27,7 @@ function CardList() {
     };
 
     fetchCards();
-  }, []);
+  }, [category]);
 
   const handleAddToDeck = (card) => {
     // Ici, vous faites un appel API pour ajouter la carte au deck
@@ -38,6 +39,13 @@ function CardList() {
 
   return (
     <div className="card-display container columns8 bordered">
+      <select value={category} onChange={e => setCategory(e.target.value)}>
+        <option value="starting">Starting</option>
+        <option value="reserve">Reserve</option>
+        <option value="technique">Technique</option>
+        <option value="goal">Goal</option>
+      </select>
+
       {cards.map((data) => (
         <div className="card-box" key={"card" + data.cardid}>
           <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
