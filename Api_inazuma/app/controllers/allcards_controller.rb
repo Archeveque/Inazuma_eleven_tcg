@@ -20,4 +20,5 @@ class AllcardsController < ApplicationController
       end
       render json: @cards
     end
+            
 end
