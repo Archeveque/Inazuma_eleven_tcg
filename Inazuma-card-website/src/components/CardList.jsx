@@ -6,6 +6,7 @@ function CardList() {
   const [position, setPosition] = useState('All');
   const [element, setElement] = useState('All');
   const [team, setTeam] = useState('All');
+  const [sortby, setSortby] = useState('number');
   const API_URL = "https://inazuma-tcg-api-879bee6c850b.herokuapp.com";
 
   useEffect(() => {
@@ -24,7 +25,6 @@ function CardList() {
 
         const responseData = await response.json();
         let cardarray= responseData;
-        console.log(element)
         if (position !== "All"){
           cardarray = (findCardPosition(cardarray, position));
         }
@@ -34,7 +34,7 @@ function CardList() {
         if (team !== "All"){
           cardarray = (findCardTeam(cardarray, team));
         }
-        console.log(cardarray)
+        cardarray = SortingCards(cardarray,sortby)
         setCards(cardarray)
       } catch (error) {
         console.error("There was an error fetching the cards:", error);
@@ -42,9 +42,21 @@ function CardList() {
     };
 
     fetchCards();
-  }, [category,position,element,team]);
+  }, [category,position,element,team,sortby]);
 
-
+  function SortingCards(array, sortby){
+    switch(sortby){
+      case 'number':
+         return array.sort((a, b) => (a.cardid > b.cardid) ? 1 : -1);
+      case 'sp':
+        return array.sort((a, b) => (a.sp > b.sp) ? 1 : -1); 
+        case 'level':
+          return array.sort((a, b) => (a.level > b.level) ? 1 : -1); 
+          case 'alph':
+            console.log(array.sort((a, b) => a.name.localeCompare(b.name)))
+            return array.sort((a, b) => (a.name.toLowerCase > b.name.toLowerCase) ? 1 : -1); 
+    }        
+  }
   function findCardPosition(array, position) {
     return array.filter(element =>element.position === position);
   }
@@ -65,13 +77,23 @@ function CardList() {
 
   return (
     <div className="container bordered ">
-      <div class="bg-primary">Filter:&nbsp;
+      <div class="bg-primary">
+      Sort by:&nbsp;
+      <select class="bg-grey" value={sortby} onChange={e => setSortby(e.target.value)}>
+        <option value="number">number</option>
+        <option value="sp">sp</option>
+        <option value="level">level</option>
+        <option value="alph">Alphabetical</option>
+      </select>
+        Filter:&nbsp;
+        position:
       <select class="bg-grey" value={position} onChange={e => setPosition(e.target.value)}>
         <option value="All">All</option>
         <option value="FW">Forward</option>
         <option value="MF">Midfielder</option>
         <option value="DF">Defender</option>
       </select>
+      element:
       <select class="bg-grey" value={element} onChange={e => setElement(e.target.value)}>
         <option value="All">All</option>
         <option value="Fire">Fire</option>
@@ -80,6 +102,7 @@ function CardList() {
         <option value="Speed">Speed</option>
         <option value="None">None</option>
       </select>
+      Type:
       <select class="bg-grey" value={category} onChange={e => setCategory(e.target.value)}>
         <option value="allcards">All</option>
         <option value="starting_cards">Starting</option>
@@ -87,11 +110,12 @@ function CardList() {
         <option value="technique_cards">Technique</option>
         <option value="goal_cards">Goal</option>
       </select>
+      Team:
       <select class="bg-grey" value={team} onChange={e => setTeam(e.target.value)}>
         <option value="All">All</option>
         <option value="Raimon">Raimon</option>
-        <option value="Royal Academy">Royal Academy</option>
-        <option value="Inazuma KFC">Inazuma KFC</option>
+        <option value="Royal Academy">Royal</option>
+        <option value="Inazuma KFC">KFC</option>
         <option value="Wild">Wild</option>
       </select>
       
