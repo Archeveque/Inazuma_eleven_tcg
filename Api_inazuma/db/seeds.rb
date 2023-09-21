@@ -11,6 +11,7 @@ def deleteCardsAndDeck
   StartingCard.destroy_all
   ReserveCard.destroy_all
   TechniqueCard.destroy_all
+  GoalCard.destry_all
   Deck.destroy_all
   puts "Old data deleted"
 end
