@@ -11,7 +11,7 @@ def deleteCardsAndDeck
   StartingCard.destroy_all
   ReserveCard.destroy_all
   TechniqueCard.destroy_all
-  GoalCard.destry_all
+  GoalCard.destroy_all
   Deck.destroy_all
   puts "Old data deleted"
 end
@@ -45,9 +45,9 @@ card_list.each do |card|
     sp: card["sp"],
     extension: card["extension"],
     rarity: card["rarity"],
-    number: card["number"],
-    cardid: card["cardid"],
-    picture: "https://i.ibb.co/8mHzjT7/placeholder-inazuma.png",
+    number: card["cardid"],
+    cardid: card["id"],
+    picture: card["picture"],
     cardtype: card["cardtype"],
     )
   end
@@ -64,9 +64,9 @@ card_list.each do |card|
       ap: card["ap"],
       extension: card["extension"],
       rarity: card["rarity"],
-      number: card["number"],
-      cardid: card["cardid"],
-      picture: "https://i.ibb.co/8mHzjT7/placeholder-inazuma.png",
+      number: card["cardid"],
+      cardid: card["id"],
+      picture: card["picture"],
       cardtype: card["cardtype"],
       level: card["level"],
     )
@@ -79,9 +79,9 @@ card_list.each do |card|
       flavor: card["flavor"],
       extension: card["extension"],
       rarity: card["rarity"],
-      number: card["number"],
-      cardid: card["cardid"],
-      picture: "https://i.ibb.co/8mHzjT7/placeholder-inazuma.png",
+      number: card["cardid"],
+      cardid: card["id"],
+      picture: card["picture"],
       cardtype: card["cardtype"],
       level: card["level"],
     )
@@ -97,9 +97,9 @@ card_list.each do |card|
       sp: card["sp"],
       extension: card["extension"],
       rarity: card["rarity"],
-      number: card["number"],
-      cardid: card["cardid"],
-      picture: "https://i.ibb.co/8mHzjT7/placeholder-inazuma.png",
+      number: card["cardid"],
+      cardid: card["id"],
+      picture: card["picture"],
       cardtype: card["cardtype"],
       )
   end
