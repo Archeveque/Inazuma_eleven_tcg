@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-
+require 'json'
 
 def deleteCardsAndDeck
   StartingCard.destroy_all
@@ -27,7 +27,86 @@ def GenerateUsers
 
   puts "Users ok"
 end
+def loadcards 
 
+card_list = JSON.parse(File.read('db/card_list.json'))
+
+
+card_list.each do |card|
+  if card["cardtype"] == "starting"
+  StartingCard.create(  
+    element: card["element"],
+    name: card["name"],
+    team: card["team"],
+    position: card["position"],
+    effect: card["effect"],
+    flavor: card["flavor"],
+    sp: card["sp"],
+    extension: card["extension"],
+    rarity: card["rarity"],
+    number: card["number"],
+    cardid: card["cardid"],
+    picture: "https://i.ibb.co/8mHzjT7/placeholder-inazuma.png",
+    cardtype: card["cardtype"],
+    )
+  end
+  if card["cardtype"] == "reserve"
+    ReserveCard.create(
+      element: card["element"],
+      name: card["name"],
+      team: card["team"],
+      position: card["position"],
+      effect: card["effect"],
+      flavor: card["flavor"],
+      sp: card["sp"],
+      firesp: card["firesp"],
+      ap: card["ap"],
+      extension: card["extension"],
+      rarity: card["rarity"],
+      number: card["number"],
+      cardid: card["cardid"],
+      picture: "https://i.ibb.co/8mHzjT7/placeholder-inazuma.png",
+      cardtype: card["cardtype"],
+      level: card["level"],
+    )
+  end
+  if card["cardtype"] == "technique"
+    TechniqueCard.create(
+      element: card["element"],
+      name: card["name"],
+      effect: card["effect"],
+      flavor: card["flavor"],
+      extension: card["extension"],
+      rarity: card["rarity"],
+      number: card["number"],
+      cardid: card["cardid"],
+      picture: "https://i.ibb.co/8mHzjT7/placeholder-inazuma.png",
+      cardtype: card["cardtype"],
+      level: card["level"],
+    )
+  end
+
+  if card["cardtype"] == "goal"
+    GoalCard.create(  
+      element: card["element"],
+      name: card["name"],
+      team: card["team"],
+      effect: card["effect"],
+      flavor: card["flavor"],
+      sp: card["sp"],
+      extension: card["extension"],
+      rarity: card["rarity"],
+      number: card["number"],
+      cardid: card["cardid"],
+      picture: "https://i.ibb.co/8mHzjT7/placeholder-inazuma.png",
+      cardtype: card["cardtype"],
+      )
+  end
+  puts "cards imported"
+end
+
+
+end
 def generateCards
   puts "Generating cards...."
 
@@ -122,5 +201,5 @@ def generateDeck
 end
 
 deleteCardsAndDeck
-generateCards
+loadcards
 generateDeck

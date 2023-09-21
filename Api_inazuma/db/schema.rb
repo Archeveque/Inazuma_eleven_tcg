@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_19_133737) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_21_143934) do
   create_table "add_reserve_to_decks", force: :cascade do |t|
     t.integer "deck_id"
     t.integer "reserve_card_id"
@@ -67,6 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_19_133737) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "cardtype"
+    t.string "team"
   end
 
   create_table "jwt_denylist", force: :cascade do |t|
