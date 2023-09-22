@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 
 function Deckview() {
     const [decks, setDecks] = useState([]);
+    const [cards, setCards] = useState([]);
+    const [category, setCategory] = useState('All');
     let { id } = useParams();
     const API_URL = 'https://inazuma-tcg-api-879bee6c850b.herokuapp.com';
 
@@ -18,6 +20,12 @@ function Deckview() {
         .then((responseData) => {
             responseData.sort((a, b) => (a.cardid > b.cardid) ? 1 : -1);
             setDecks(responseData);
+            let cardarray= responseData;
+            if (category !== "All"){
+                cardarray = (findCardType(cardarray, category));
+              }
+              console.log(cardarray)
+            setCards(cardarray)
         })
         .catch(error => {
             console.error("There was an error fetching the data:", error);
@@ -31,10 +39,13 @@ function Deckview() {
 
     useEffect(() => {
         fetchDecks();
-    }, []);
-
-    function findCardType(array, title) {
+    }, [category]);
+    function findCardTypeNum(array, title) {
         return array.filter(element => element.cardtype === title).length;
+    }
+    function findCardType(array, title) {
+        console.log( array.filter(element => element.cardtype === title));
+        return array.filter(element => element.cardtype === title);
     }
 
     function findCardPosition(array, title, position) {
@@ -42,20 +53,20 @@ function Deckview() {
     }
 
     return (
-        <div className="container bordered">
+        <div className="container bordered  lign-end">
             <div className="gradient-box">
                 <p>Deckbuilding</p>
             </div>
             <table className="bg-grey bordered" width="100%">
                 <tbody>
                     <tr>
-                        <td> </td><td> Deck size : {decks.length-findCardType(decks,"starting")}/30 </td>
+                        <td> </td><td> Deck size : {decks.length-findCardTypeNum(decks,"starting")}/30 </td>
                     </tr>
                     <tr>
-                        <td></td><td>Reserve: {findCardType(decks,"reserve")}</td>
+                        <td></td><td>Reserve: {findCardTypeNum(decks,"reserve")}</td>
                     </tr>
                     <tr>
-                        <td>Starting deck: {findCardType(decks,"starting")}/10</td>
+                        <td>Starting deck: {findCardTypeNum(decks,"starting")}/10</td>
                         <td>
                             FW:{findCardPosition(decks,"reserve","FW")} 
                             MF:{findCardPosition(decks,"reserve","MF")} 
@@ -68,22 +79,23 @@ function Deckview() {
                             MF:{findCardPosition(decks,"starting","MF")} 
                             DF:{findCardPosition(decks,"starting","DF")}
                         </td>
-                        <td>Technique: {findCardType(decks,"technique")}</td>
+                        <td>Technique: {findCardTypeNum(decks,"technique")}</td>
                     </tr>
                 </tbody>
             </table>
+            <select class="bg-grey" value={category} onChange={e => setCategory(e.target.value)}>
+                <option value="All">All</option>
+                <option value="starting">Starting</option>
+                <option value="reserve">Reserve</option>
+                <option value="technique">Technique</option>
+                <option value="goal">Goal</option>
+      </select>
             <div className="card-display">
 
-                {decks.map((data, index) => (
-                    <div className="card-box " key={data.id}>
-                        <div>
+                {cards.map((data, index) => (
+                    <div className="card-box-deck " key={index}>
                             <img width="100%" src={data.picture} title={data.name} alt={data.name} />
-                            <div className="card-details">
-                                <h4>{data.name}</h4>
-                                <p>Type: {data.cardtype}</p>
-                            </div>
-                            <button onClick={() => handleRemoveFromDeck(data.cardid)}>Retirer</button>
-                        </div>
+                            <button onClick={() => handleRemoveFromDeck(data.cardid)}>Remove</button>
                     </div>
                 ))}
             </div>

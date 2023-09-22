@@ -2,6 +2,7 @@ import React from 'react';
 import { useAtom } from 'jotai';
 import { userAtom } from '../atom';
 import Cookies from 'js-cookie';
+import { Navigate } from 'react-router-dom';
 
 function LogoutButton() {
   const [, setUser] = useAtom(userAtom);
@@ -15,7 +16,6 @@ function LogoutButton() {
 
     Cookies.remove('token');
     Cookies.remove('id');
-
   };
 
   return (

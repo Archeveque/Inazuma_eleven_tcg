@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_21_143934) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_22_150614) do
+  create_table "add_goal_to_decks", force: :cascade do |t|
+    t.integer "deck_id"
+    t.integer "goal_card_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deck_id"], name: "index_add_goal_to_decks_on_deck_id"
+    t.index ["goal_card_id"], name: "index_add_goal_to_decks_on_goal_card_id"
+  end
+
   create_table "add_reserve_to_decks", force: :cascade do |t|
     t.integer "deck_id"
     t.integer "reserve_card_id"

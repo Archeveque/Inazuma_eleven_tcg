@@ -68,11 +68,8 @@ function CardList() {
   }
 
   const handleAddToDeck = (card) => {
-    // Ici, vous faites un appel API pour ajouter la carte au deck
-    // et mettez à jour l'état du deck si nécessaire
     console.log(`Adding card with id ${card.cardid} to the deck...`);
 
-    // Pour l'instant, c'est un simple log, mais vous devez établir une connexion avec votre API pour réellement ajouter la carte.
   }
 
   return (
