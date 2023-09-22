@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function CardList() {
+function CardListDeck() {
   const [cards, setCards] = useState([]);
   const [category, setCategory] = useState('allcards');  // valeur par défaut
   const [position, setPosition] = useState('All');
@@ -124,10 +124,12 @@ function CardList() {
       {cards.map((data) => (
       <div className="card-box " key={"card" + data.cardid}>
         <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
+        <p>test  {data.level}</p>
+        <button onClick={() => handleAddToDeck(data)}>Ajouter au deck</button>
       </div>
     ))}
   </div></div>
   );
 }
 
-export default CardList;
+export default CardListDeck;

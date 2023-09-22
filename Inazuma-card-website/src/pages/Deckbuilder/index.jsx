@@ -1,5 +1,5 @@
 import Deckview from '../../components/Deckview';
-import CardList from '../../components/CardList';
+import CardListDeck from '../../components/CardListDeck';
 
 const Decks = () => {
   return (
@@ -7,7 +7,7 @@ const Decks = () => {
     <table>
         <tr>
           <td  width="110%" class="align-top">
-            <CardList />
+            <CardListDeck />
           </td>
           <td  width="43%">
             <Deckview />
