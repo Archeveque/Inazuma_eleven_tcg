@@ -8,12 +8,6 @@ Rails.application.routes.draw do
   resources :decks
   resources :allcards
   get '/decks/:id/starting/:cardid', to: 'decks#starting'
-  get '/decks/:id/reserve/:cardid', to: 'decks#reserve'
-  get '/decks/:id/technique/:cardid', to: 'decks#technique'
-  get '/decks/:id/goal/:cardid', to: 'decks#goal'
-  
-  get '/allcards/category/:category', to: 'allcards#by_category'
-
 
   devise_for :users,
              controllers: {

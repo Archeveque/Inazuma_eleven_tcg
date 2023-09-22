@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAtom } from 'jotai';
 import { userAtom } from '../atom';
 import Cookies from 'js-cookie';
+import { Navigate } from 'react-router-dom';
 
 
 function Login() {

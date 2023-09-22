@@ -2,12 +2,6 @@ import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useAtom } from 'jotai';
 import { userAtom } from './atom';
-import Register from './components/register';
-import Login from './components/login';
-import PostList from './components/PostList';
-import CardList from './components/CardList';
-import CreatePost from './components/CreatePostButton';
-import Logout from './components/logout';
 import Cookies from 'js-cookie';
 import Navbar from './components/navbar'
 import "./App.css";
@@ -19,6 +13,7 @@ import Decks from './pages/Decks';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 function App() {
   const [user] = useAtom(userAtom);
@@ -49,6 +44,7 @@ function App() {
           <Route path="/Decks" element={<Decks />} />
           <Route path="/Login" element={<LoginPage />} />
           <Route path="/Register" element={<RegisterPage />} />
+          <Route path='*' element={<Navigate to='/'/>}/>
         </Routes>
       {user.isLoggedIn ? (
         <div></div>

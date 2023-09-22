@@ -35,7 +35,7 @@ class DecksController < ApplicationController
 
   # DELETE /decks/1
   def destroy
-    @deck.destroy
+    Deck.find(params[:id]).destroy
   end
 
   #GET /decks/1/starting/2
@@ -69,7 +69,7 @@ class DecksController < ApplicationController
     def set_deck
       cardarray=[]
       deck = Deck.find(params[:id])
-      cardarray = deck.starting_cards + deck.reserve_cards + deck.technique_cards
+      cardarray = deck.starting_cards + deck.reserve_cards + deck.technique_cards + deck.goal_cards
 
       @deck = cardarray
     end

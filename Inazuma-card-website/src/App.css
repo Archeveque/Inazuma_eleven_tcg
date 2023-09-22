@@ -183,6 +183,12 @@ a {
     justify-content:flex-start;
     flex-wrap: wrap;
   }
+  .align-end{
+    vertical-align: top;
+  }
+  .w200p{
+    width:200px;
+  }
 /* ==================== Button territory ==================== */
   button{
     padding: 10px;
@@ -240,7 +246,7 @@ a {
     margin: 20px;
     border: solid black;
     border-radius: 8px;
-    width: 200px;
+    width: 190px;
   }
   .deck-display:hover{
     border: solid white;
@@ -255,6 +261,18 @@ a {
     border: solid rgb(27, 27, 27) 1px;
   }
   .card-box:hover{
+    border: solid white 1px;
+    border-radius: 4px;
+  }
+  .card-box-deck{
+    width:120px;
+    box-shadow: 10px 10px 5px rgb(17, 17, 17) ;
+    margin-bottom: 20px;
+    margin-right: 2px;
+    margin-left: 2px;
+    border: solid rgb(27, 27, 27) 1px;
+  }
+  .card-box-deck:hover{
     border: solid white 1px;
     border-radius: 4px;
   }

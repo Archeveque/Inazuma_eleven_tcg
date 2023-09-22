@@ -9,7 +9,7 @@ const Decks = () => {
           <td  width="110%" class="align-top">
             <CardListDeck />
           </td>
-          <td  width="43%">
+          <td  width="43%" class="align-end" >
             <Deckview />
           </td>
         </tr>

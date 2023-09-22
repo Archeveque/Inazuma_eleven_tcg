@@ -124,8 +124,7 @@ function CardListDeck() {
       {cards.map((data) => (
       <div className="card-box " key={"card" + data.cardid}>
         <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
-        <p>test  {data.level}</p>
-        <button onClick={() => handleAddToDeck(data)}>Ajouter au deck</button>
+        <button onClick={() => handleAddToDeck(data)}>Add too deck</button>
       </div>
     ))}
   </div></div>
