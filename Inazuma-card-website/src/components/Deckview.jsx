@@ -97,6 +97,7 @@ function Deckview() {
                 {cards.map((data, index) => (
                     <div className="card-box-deck " key={index}>
                             <img width="100%" src={data.picture} title={data.name} alt={data.name} />
+                            
                             <button onClick={() => handleRemoveFromDeck(data.cardid)}>Remove</button>
                     </div>
                 ))}
