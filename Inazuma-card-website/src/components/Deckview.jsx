@@ -40,6 +40,8 @@ function Deckview() {
     useEffect(() => {
         fetchDecks();
     }, [category]);
+
+    // filters //
     function findCardTypeNum(array, title) {
         return array.filter(element => element.cardtype === title).length;
     }

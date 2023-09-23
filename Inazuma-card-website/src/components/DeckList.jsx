@@ -27,7 +27,7 @@ function DeckList() {
   const handlenewDeck = async (event) => {
     event.preventDefault();
 
-    // Post request for new deck
+    // Post request for creating a new deck
     try {
       const response = await fetch('https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks', {
         method: 'POST',
@@ -54,9 +54,9 @@ function DeckList() {
   const handledeletedeck = async (event) => {
     event.preventDefault();
 
-    // Post request for new deck
+    // Delete request for deck
     try {
-      const response = await fetch('https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/22', {
+      const response = await fetch('https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/21', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

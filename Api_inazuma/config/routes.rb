@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :starting_cards
   resources :decks
   resources :allcards
-  get '/decks/:id/starting/:cardid', to: 'decks#starting'
 
   devise_for :users,
              controllers: {

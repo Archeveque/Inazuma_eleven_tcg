@@ -46,13 +46,6 @@ function App() {
           <Route path="/Register" element={<RegisterPage />} />
           <Route path='*' element={<Navigate to='/'/>}/>
         </Routes>
-      {user.isLoggedIn ? (
-        <div></div>
-      ) : (
-        <div>
-          <p>you aren't loged</p>
-        </div>
-      )}
     </div>
     </BrowserRouter>
   );

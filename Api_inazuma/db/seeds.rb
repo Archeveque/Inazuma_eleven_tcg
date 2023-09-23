@@ -7,6 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'json'
 
+
+
 def deleteCardsAndDeck
   StartingCard.destroy_all
   ReserveCard.destroy_all
@@ -15,6 +17,8 @@ def deleteCardsAndDeck
   Deck.destroy_all
   puts "Old data deleted"
 end
+
+
 
 def GenerateUsers
   10.times do
@@ -28,70 +32,20 @@ def GenerateUsers
 
   puts "Users ok"
 end
+
+
+
 def loadcards 
 
-card_list = JSON.parse(File.read('db/card_list.json'))
+  card_list = JSON.parse(File.read('db/card_list.json'))
 
-
-card_list.each do |card|
-  if card["cardtype"] == "starting"
-  StartingCard.create(  
-    element: card["element"],
-    name: card["name"],
-    team: card["team"],
-    position: card["position"],
-    effect: card["effect"],
-    flavor: card["flavor"],
-    sp: card["sp"],
-    extension: card["extension"],
-    rarity: card["rarity"],
-    number: card["cardid"],
-    cardid: card["id"],
-    picture: card["picture"],
-    cardtype: card["cardtype"],
-    )
-  end
-  if card["cardtype"] == "reserve"
-    ReserveCard.create(
+  card_list.each do |card|
+    if card["cardtype"] == "starting"
+    StartingCard.create(  
       element: card["element"],
       name: card["name"],
       team: card["team"],
       position: card["position"],
-      effect: card["effect"],
-      flavor: card["flavor"],
-      sp: card["sp"],
-      firesp: card["firesp"],
-      ap: card["ap"],
-      extension: card["extension"],
-      rarity: card["rarity"],
-      number: card["cardid"],
-      cardid: card["id"],
-      picture: card["picture"],
-      cardtype: card["cardtype"],
-      level: card["level"],
-    )
-  end
-  if card["cardtype"] == "technique"
-    TechniqueCard.create(
-      element: card["element"],
-      name: card["name"],
-      effect: card["effect"],
-      flavor: card["flavor"],
-      extension: card["extension"],
-      rarity: card["rarity"],
-      number: card["cardid"],
-      cardid: card["id"],
-      picture: card["picture"],
-      cardtype: card["cardtype"],
-      level: card["level"],
-    )
-  end
-
-  if card["cardtype"] == "goal"
-    GoalCard.create(  
-      element: card["element"],
-      name: card["name"],
-      team: card["team"],
       effect: card["effect"],
       flavor: card["flavor"],
       sp: card["sp"],
@@ -102,12 +56,64 @@ card_list.each do |card|
       picture: card["picture"],
       cardtype: card["cardtype"],
       )
+    end
+    if card["cardtype"] == "reserve"
+      ReserveCard.create(
+        element: card["element"],
+        name: card["name"],
+        team: card["team"],
+        position: card["position"],
+        effect: card["effect"],
+        flavor: card["flavor"],
+        sp: card["sp"],
+        firesp: card["firesp"],
+        ap: card["ap"],
+        extension: card["extension"],
+        rarity: card["rarity"],
+        number: card["cardid"],
+        cardid: card["id"],
+        picture: card["picture"],
+        cardtype: card["cardtype"],
+        level: card["level"],
+      )
+    end
+    if card["cardtype"] == "technique"
+      TechniqueCard.create(
+        element: card["element"],
+        name: card["name"],
+        effect: card["effect"],
+        flavor: card["flavor"],
+        extension: card["extension"],
+        rarity: card["rarity"],
+        number: card["cardid"],
+        cardid: card["id"],
+        picture: card["picture"],
+        cardtype: card["cardtype"],
+        level: card["level"],
+      )
+    end
+
+    if card["cardtype"] == "goal"
+      GoalCard.create(  
+        element: card["element"],
+        name: card["name"],
+        team: card["team"],
+        effect: card["effect"],
+        flavor: card["flavor"],
+        sp: card["sp"],
+        extension: card["extension"],
+        rarity: card["rarity"],
+        number: card["cardid"],
+        cardid: card["id"],
+        picture: card["picture"],
+        cardtype: card["cardtype"],
+        )
+    end
+    puts "cards imported"
   end
-  puts "cards imported"
-end
-
 
 end
+
 def generateCards
   puts "Generating cards...."
 
@@ -179,8 +185,8 @@ def generateCards
     cardid: cardid,
     picture: "https://i.ibb.co/8mHzjT7/placeholder-inazuma.png",
     cardtype: "technique",
-  )
-  cardid =cardid +1;
+    )
+    cardid =cardid +1;
   end
   puts "Technique Cards OK"
 end
@@ -201,6 +207,10 @@ def generateDeck
   puts "Deck created"
 end
 
-deleteCardsAndDeck
-loadcards
-generateDeck
+def perform
+  deleteCardsAndDeck
+  loadcards
+  generateDeck
+end
+
+perform

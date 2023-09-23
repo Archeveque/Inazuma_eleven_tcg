@@ -57,6 +57,7 @@ function CardListDeck() {
             return array.sort((a, b) => (a.name.toLowerCase > b.name.toLowerCase) ? 1 : -1); 
     }        
   }
+  // filters //
   function findCardPosition(array, position) {
     return array.filter(element =>element.position === position);
   }
@@ -66,14 +67,12 @@ function CardListDeck() {
   function findCardTeam(array, team) {
     return array.filter(card =>card.team === team);
   }
-
+  // Adding a card to a deck//
   const handleAddToDeck = (card) => {
-    // Ici, vous faites un appel API pour ajouter la carte au deck
-    // et mettez à jour l'état du deck si nécessaire
     console.log(`Adding card with id ${card.cardid} to the deck...`);
 
-    // Pour l'instant, c'est un simple log, mais vous devez établir une connexion avec votre API pour réellement ajouter la carte.
   }
+  // removing a card from the deck//
 
   return (
     <div className="container bordered ">
