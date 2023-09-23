@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
+
 
 function CardListDeck() {
   const [cards, setCards] = useState([]);
@@ -68,10 +70,36 @@ function CardListDeck() {
     return array.filter(card =>card.team === team);
   }
   // Adding a card to a deck//
-  const handleAddToDeck = (card) => {
-    console.log(`Adding card with id ${card.cardid} to the deck...`);
 
-  }
+    const handleAddToDeck = async (card) => {
+      console.log(`Adding card with id ${card.cardid} to the deck...`);
+  
+      // Post request for creating a new deck
+      try {
+        const response = await fetch(`https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/13`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            card: {
+              id:card.cardid,
+              type:card.cardtype,
+              deckid: 13,
+            }
+          }),
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          window.location.reload(false);
+        } else {
+          console.log('Incorrect credentials');
+        }
+      } catch (error) {
+        console.log('An error occured');
+      }
+    }
   // removing a card from the deck//
 
   return (
