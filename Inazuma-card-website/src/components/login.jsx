@@ -14,7 +14,7 @@ function Login() {
   const handleLogin = async (event) => {
     event.preventDefault();
 
-    // Effectuer la requête fetch vers le backend Strapi pour l'authentification
+    // fetch request for autentification
     try {
       const response = await fetch('https://inazuma-tcg-api-879bee6c850b.herokuapp.com/users/sign_in', {
         method: 'POST',

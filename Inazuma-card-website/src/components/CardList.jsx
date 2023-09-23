@@ -57,6 +57,8 @@ function CardList() {
             return array.sort((a, b) => (a.name.toLowerCase > b.name.toLowerCase) ? 1 : -1); 
     }        
   }
+
+  // filters //
   function findCardPosition(array, position) {
     return array.filter(element =>element.position === position);
   }
@@ -65,11 +67,6 @@ function CardList() {
   }
   function findCardTeam(array, team) {
     return array.filter(card =>card.team === team);
-  }
-
-  const handleAddToDeck = (card) => {
-    console.log(`Adding card with id ${card.cardid} to the deck...`);
-
   }
 
   return (
@@ -115,7 +112,7 @@ function CardList() {
         <option value="Inazuma KFC">KFC</option>
         <option value="Wild">Wild</option>
       </select>
-      
+
       </div>
     <div class="card-display">
       {cards.map((data) => (
