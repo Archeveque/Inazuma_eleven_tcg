@@ -28,10 +28,20 @@ class DecksController < ApplicationController
 
   # PATCH/PUT /decks/1
   def update
-    if @deck.update(deck_params)
-      render json: @deck
+    puts card_params["id"]
+    puts card_params["type"]
+    if card_params["type"] == "starting"
+      puts "starting detected"
+      newcard = AddStartingToDeck.create(deck:Deck.find(13),starting_card: StartingCard.find_by(cardid: card_params["id"]));
+      puts "worked?"
+    end
+     
+    if newcard.save
+      puts "saved"
+      render json: newcard
     else
-      render json: @deck.errors, status: :unprocessable_entity
+      puts "error"
+      render json: newcard, status: :unprocessable_entity
     end
   end
 
@@ -59,5 +69,8 @@ class DecksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def deck_params
       params.require(:deck).permit(:element, :level, :user_id, :name, :team, :position, :effect, :flavor, :sp, :firesp, :ap, :extension, :rarity, :number, :cardid, :picture)
+    end
+    def card_params
+      params.require(:card).permit(:type, :id, )
     end
 end
