@@ -30,19 +30,19 @@ class DecksController < ApplicationController
   def update
     if card_params["type"] == "starting"
       puts "starting detected"
-      newcard = AddStartingToDeck.create(deck:@deck,starting_card: StartingCard.find_by(cardid: card_params["id"]));
+      newcard = AddStartingToDeck.create(deck:Deck.find(card_params["deckid"]),starting_card: StartingCard.find_by(cardid: card_params["id"]));
     end
     if card_params["type"] == "reserve"
       puts "reserve detected"
-      newcard = AddReserveToDeck.create(deck:Deck.find(13),reserve_card: ReserveCard.find_by(cardid: card_params["id"]));
+      newcard = AddReserveToDeck.create(deck:Deck.find(card_params["deckid"]),reserve_card: ReserveCard.find_by(cardid: card_params["id"]));
     end
     if card_params["type"] == "technique"
       puts "technique detected"
-      newcard = AddTechniqueToDeck.create(deck:Deck.find(13),technique_card: TechniqueCard.find_by(cardid: card_params["id"]));
+      newcard = AddTechniqueToDeck.create(deck:Deck.find(card_params["deckid"]),technique_card: TechniqueCard.find_by(cardid: card_params["id"]));
     end
     if card_params["type"] == "goal"
       puts "goal detected"
-      newcard = AddGoalToDeck.create(deck:Deck.find(13),goal_card: GoalCard.find_by(cardid: card_params["id"]));
+      newcard = AddGoalToDeck.create(deck:Deck.find(card_params["deckid"]),goal_card: GoalCard.find_by(cardid: card_params["id"]));
     end
      
     if newcard.save
@@ -80,6 +80,6 @@ class DecksController < ApplicationController
       params.require(:deck).permit(:element, :level, :user_id, :name, :team, :position, :effect, :flavor, :sp, :firesp, :ap, :extension, :rarity, :number, :cardid, :picture)
     end
     def card_params
-      params.require(:card).permit(:type, :id, )
+      params.require(:card).permit(:type, :id, :deckid )
     end
 end
