@@ -84,7 +84,8 @@ function CardListDeck() {
           body: JSON.stringify({
             card: {
               id:card.cardid,
-              type:card.cardtype
+              type:card.cardtype,
+              deckid: 13,
             }
           }),
         });
