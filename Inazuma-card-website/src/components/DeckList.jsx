@@ -1,11 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import deckicon from '../assets/deckbox480.png';
 import Cookies from 'js-cookie';
+import { useAtom } from 'jotai';
+import { userAtom } from '../atom';
 
 function DeckList() {
   const [decks, setDecks] = useState([]);
   const [name, setName] = useState([]);
   const [error, setError] = useState('');
+  const [user] = useAtom(userAtom);
+  const [, setUser] = useAtom(userAtom);
+
+  useEffect(() => {
+    const token = Cookies.get('token');
+    const id = Cookies.get('id');
+
+    if (token) {
+      setUser({
+        id: id,
+        isLoggedIn: true,
+        token: token,
+      });
+    }
+  }, []);
 
 
   useEffect(() => {
@@ -76,6 +93,8 @@ function DeckList() {
 
 
 return (
+  <div>
+  {user.isLoggedIn ? (
   <div class="container bordered align-top">
     {decks.map((data) => (
       <div class="deck-display" key={data.id}>
@@ -98,6 +117,12 @@ return (
         <button class="bg-primary" type="submit">Create new deck</button>
       </form>
   </div>
+  ) : (
+    <div class="container">
+      <p>You aren't logged, You need to login to create and edit your decks</p>
+      <a class="bg-secondary btn" href="/login">Login</a>
+    </div>
+  )}</div>
   )
 }
 
