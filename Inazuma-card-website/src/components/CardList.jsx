@@ -69,6 +69,17 @@ function CardList() {
     return array.filter(card =>card.team === team);
   }
 
+  const [enlargedImage, setEnlargedImage] = useState(null);
+
+  const handleImageClick = (imageUrl) => {
+    setEnlargedImage(imageUrl);
+  };
+  
+  const closeEnlargedImage = () => {
+    setEnlargedImage(null);
+  };
+  
+
   return (
     <div className="container bordered ">
       <div class="bg-primary">
@@ -116,11 +127,26 @@ function CardList() {
       </div>
     <div class="card-display">
       {cards.map((data) => (
-      <div className="card-box " key={"card" + data.cardid}>
-        <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
+        <div className="card-box" key={"card" + data.cardid}>
+        <img 
+          width="100%" 
+          src={data.picture} 
+          title={data.name} 
+          alt={data.name}
+          onClick={() => handleImageClick(data.picture)} 
+        />
       </div>
     ))}
-  </div></div>
+  </div>
+  {enlargedImage && (
+  <div className="modal" onClick={closeEnlargedImage}>
+    <div className="modal-content-container" onClick={(e) => e.stopPropagation()}>
+      <span className="close" onClick={closeEnlargedImage}>&times;</span>
+      <img className="modal-content" src={enlargedImage} />
+    </div>
+  </div>
+)}
+  </div>
   );
 }
 
