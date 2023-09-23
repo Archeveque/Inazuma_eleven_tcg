@@ -15,11 +15,13 @@ class DecksController < ApplicationController
 
   # POST /decks
   def create
-    @deck = Deck.new(deck_params)
+    @deck = Deck.new(name: deck_params["name"],user_id: deck_params["user_id"])
 
     if @deck.save
+      puts "saved"
       render json: @deck, status: :created, location: @deck
     else
+      puts "failed"
       render json: @deck.errors, status: :unprocessable_entity
     end
   end
@@ -56,6 +58,6 @@ class DecksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def deck_params
-      params.require(:deck).permit(:element, :level, :name, :team, :position, :effect, :flavor, :sp, :firesp, :ap, :extension, :rarity, :number, :cardid, :picture)
+      params.require(:deck).permit(:element, :level, :user_id, :name, :team, :position, :effect, :flavor, :sp, :firesp, :ap, :extension, :rarity, :number, :cardid, :picture)
     end
 end

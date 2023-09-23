@@ -53,7 +53,8 @@ function DeckList() {
         },
         body: JSON.stringify({
           deck: {
-            name : name
+            name : name,
+            user_id: user.id,
           }
         }),
       });
