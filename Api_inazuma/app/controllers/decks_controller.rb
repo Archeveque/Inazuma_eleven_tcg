@@ -28,12 +28,21 @@ class DecksController < ApplicationController
 
   # PATCH/PUT /decks/1
   def update
-    puts card_params["id"]
-    puts card_params["type"]
     if card_params["type"] == "starting"
       puts "starting detected"
       newcard = AddStartingToDeck.create(deck:Deck.find(13),starting_card: StartingCard.find_by(cardid: card_params["id"]));
-      puts "worked?"
+    end
+    if card_params["type"] == "reserve"
+      puts "reserve detected"
+      newcard = AddReserveToDeck.create(deck:Deck.find(13),reserve_card: ReserveCard.find_by(cardid: card_params["id"]));
+    end
+    if card_params["type"] == "technique"
+      puts "technique detected"
+      newcard = AddTechniqueToDeck.create(deck:Deck.find(13),technique_card: TechniqueCard.find_by(cardid: card_params["id"]));
+    end
+    if card_params["type"] == "goal"
+      puts "goal detected"
+      newcard = AddGoalToDeck.create(deck:Deck.find(13),goal_card: GoalCard.find_by(cardid: card_params["id"]));
     end
      
     if newcard.save
