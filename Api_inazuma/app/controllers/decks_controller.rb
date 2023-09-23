@@ -30,7 +30,7 @@ class DecksController < ApplicationController
   def update
     if card_params["type"] == "starting"
       puts "starting detected"
-      newcard = AddStartingToDeck.create(deck:Deck.find(13),starting_card: StartingCard.find_by(cardid: card_params["id"]));
+      newcard = AddStartingToDeck.create(deck:@deck,starting_card: StartingCard.find_by(cardid: card_params["id"]));
     end
     if card_params["type"] == "reserve"
       puts "reserve detected"
