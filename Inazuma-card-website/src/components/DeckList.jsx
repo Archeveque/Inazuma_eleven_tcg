@@ -68,28 +68,26 @@ function DeckList() {
       setError('An error occured');
     }
   }
-  const handledeletedeck = async (event) => {
-    event.preventDefault();
-
-    // Delete request for deck
+  const handledeletedeck = async (deckId) => {
     try {
-      const response = await fetch('https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/21', {
+      const response = await fetch(`https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/${deckId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}` 
         },
       });
-
+  
       if (response.ok) {
-        const data = await response.json();
         window.location.reload(false);
       } else {
-        setError('Incorrect credentials');
+        setError('Unable to delete deck');
       }
     } catch (error) {
-      setError('An error occured');
+      setError('An error occurred');
     }
   }
+  
 
 
 return (
@@ -101,7 +99,7 @@ return (
         <img src={deckicon} width="190px" title={data.name} alt={data.name}></img>
         <a class="btn bg-secondary" href={"/deckbuilder/" +data.id}>edit Deck </a>
         <p>{data.name + data.id}</p>
-        <button class="bg-primary" onClick={handledeletedeck}>delete</button>
+        <button class="bg-primary" onClick={() => handledeletedeck(data.id)}>delete</button>
         </div>
       ))}
       {error && <p>{error}</p>}
