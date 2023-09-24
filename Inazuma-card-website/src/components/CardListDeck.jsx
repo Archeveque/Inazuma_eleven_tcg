@@ -100,7 +100,16 @@ function CardListDeck() {
         console.log('An error occured');
       }
     }
-  // removing a card from the deck//
+    const [enlargedImage, setEnlargedImage] = useState(null);
+
+    const handleImageClick = (imageUrl) => {
+      setEnlargedImage(imageUrl);
+    };
+    
+    const closeEnlargedImage = () => {
+      setEnlargedImage(null);
+    };
+    
 
   return (
     <div className="container bordered ">
@@ -150,11 +159,20 @@ function CardListDeck() {
     <div class="card-display">
       {cards.map((data) => (
       <div className="card-box " key={"card" + data.cardid}>
-        <img width="100%" src={data.picture} title={data.name} alt={data.name}></img>
+        <img width="100%" src={data.picture} title={data.name} alt={data.name} onClick={() => handleImageClick(data.picture)} ></img>
         <button onClick={() => handleAddToDeck(data)}>Add too deck</button>
       </div>
     ))}
-  </div></div>
+  </div>
+  {enlargedImage && (
+    <div className="modal" onClick={closeEnlargedImage}>
+      <div className="modal-content-container" onClick={(e) => e.stopPropagation()}>
+        <span className="close" onClick={closeEnlargedImage}>&times;</span>
+        <img className="modal-content" src={enlargedImage} />
+      </div>
+    </div>
+  )}
+  </div>
   );
 }
 

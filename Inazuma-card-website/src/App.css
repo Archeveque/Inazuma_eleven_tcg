@@ -301,8 +301,7 @@ a {
 
 /* ==================== Enlarge Images ==================== */ 
 .card-box img {
-  width: 200px;     /* ou la largeur souhaitée */
-  height: 300px;    /* ou la hauteur souhaitée */
+  width: 180px;  
   object-fit: cover;  
   display: block;
   margin: 0 auto;
@@ -325,7 +324,8 @@ a {
 
 .modal-content {
   max-width: 60rem;
-  max-height: 60rem; 
+  max-height: 60rem;
+  min-height: 60rem; 
   object-fit: cover;
 }
 

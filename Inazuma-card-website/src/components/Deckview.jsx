@@ -71,6 +71,16 @@ function Deckview() {
     function findCardPosition(array, title, position) {
         return array.filter(element => element.cardtype === title && element.position === position).length;
     }
+    const [enlargedImage, setEnlargedImage] = useState(null);
+
+    const handleImageClick = (imageUrl) => {
+      setEnlargedImage(imageUrl);
+    };
+    
+    const closeEnlargedImage = () => {
+      setEnlargedImage(null);
+    };
+    
 
     return (
         <div className="container bordered  lign-end">
@@ -114,11 +124,19 @@ function Deckview() {
 
                 {cards.map((data, index) => (
                     <div className="card-box-deck " key={index}>
-                            <img width="100%" src={data.picture} title={data.name} alt={data.name} />
+                            <img width="100%" src={data.picture} title={data.name} alt={data.name} onClick={() => handleImageClick(data.picture)} />
                             <button onClick={() => handleRemoveFromDeck(data)}>Remove</button>
                     </div>
                 ))}
             </div>
+            {enlargedImage && (
+                <div className="modal" onClick={closeEnlargedImage}>
+                    <div className="modal-content-container" onClick={(e) => e.stopPropagation()}>
+                        <span className="close" onClick={closeEnlargedImage}>&times;</span>
+                        <img className="modal-content" src={enlargedImage} />
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
