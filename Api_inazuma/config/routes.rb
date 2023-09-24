@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :starting_cards
   resources :decks
   resources :allcards
-
+  post '/decks/:deckid/destroycard', to: 'decks#destroycard'
   devise_for :users,
              controllers: {
                sessions: 'users/sessions',

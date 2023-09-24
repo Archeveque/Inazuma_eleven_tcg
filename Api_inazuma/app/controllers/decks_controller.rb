@@ -59,10 +59,29 @@ class DecksController < ApplicationController
     Deck.find(params[:id]).destroy
   end
 
-  def destoycard
-    deck = Deck.find(params[:id])
-    @cardid = deck.starting_cards.find(params[:cardid])
-    deck.starting_cards.delete(params[:cardid])
+  def destroycard
+    puts "test"
+    puts card_params
+    if card_params["type"] == "starting"
+      puts "starting detected"
+       AddStartingToDeck.find_by(deck:Deck.find(card_params["deckid"]),starting_card: StartingCard.find_by(cardid: card_params["id"])).destroy;
+       puts "card deleted"
+    end
+    if card_params["type"] == "reserve"
+      puts "reserve detected"
+      AddReserveToDeck.find_by(deck:Deck.find(card_params["deckid"]),reserve_card: ReserveCard.find_by(cardid: card_params["id"])).destroy;
+      puts "card deleted"
+    end
+    if card_params["type"] == "technique"
+      puts "technique detected"
+      AddTechniqueToDeck.find_by(deck:Deck.find(card_params["deckid"]),technique_card: TechniqueCard.find_by(cardid: card_params["id"])).destroy;
+      puts "card deleted"
+    end
+    if card_params["type"] == "goal"
+      puts "goal detected"
+      AddGoalToDeck.find_by(deck:Deck.find(card_params["deckid"]),goal_card: GoalCard.find_by(cardid: card_params["id"])).destroy;
+      puts "card deleted"
+    end
   end
 
   private

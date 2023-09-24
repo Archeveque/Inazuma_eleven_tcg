@@ -9,6 +9,7 @@ function CardListDeck() {
   const [element, setElement] = useState('All');
   const [team, setTeam] = useState('All');
   const [sortby, setSortby] = useState('number');
+  let { id } = useParams();
   const API_URL = "https://inazuma-tcg-api-879bee6c850b.herokuapp.com";
 
   useEffect(() => {
@@ -70,13 +71,13 @@ function CardListDeck() {
     return array.filter(card =>card.team === team);
   }
   // Adding a card to a deck//
-
     const handleAddToDeck = async (card) => {
-      console.log(`Adding card with id ${card.cardid} to the deck...`);
+      
+      console.log(`Adding card with id ${card.cardid} to deck#${id}...`);
   
       // Post request for creating a new deck
       try {
-        const response = await fetch(`https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/13`, {
+        const response = await fetch(`https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/${id}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -85,14 +86,13 @@ function CardListDeck() {
             card: {
               id:card.cardid,
               type:card.cardtype,
-              deckid: 13,
+              deckid: id,
             }
           }),
         });
   
         if (response.ok) {
           const data = await response.json();
-          window.location.reload(false);
         } else {
           console.log('Incorrect credentials');
         }
