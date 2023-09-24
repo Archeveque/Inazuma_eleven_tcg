@@ -32,10 +32,28 @@ function Deckview() {
         });
     }
 
-    const handleRemoveFromDeck = (cardId) => {
-        // Update the state by removing the card from the deck view
-        setDecks(prevDecks => prevDecks.filter(card => card.cardid !== cardId));
-    };
+        const handleRemoveFromDeck = async (card) => {
+      
+            console.log(`Adding card with id ${card.cardid} to deck#${id}...`);
+        
+            // Post request for creating a new deck
+            
+              const response = await fetch(`https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/${id}/destroycard`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  card: {
+                    id:card.cardid,
+                    type:card.cardtype,
+                    deckid: id,
+                  }
+                }),
+              });
+            
+            fetchDecks();
+          }
 
     useEffect(() => {
         fetchDecks();
@@ -97,7 +115,7 @@ function Deckview() {
                 {cards.map((data, index) => (
                     <div className="card-box-deck " key={index}>
                             <img width="100%" src={data.picture} title={data.name} alt={data.name} />
-                            <button onClick={() => handleRemoveFromDeck(data.cardid)}>Remove</button>
+                            <button onClick={() => handleRemoveFromDeck(data)}>Remove</button>
                     </div>
                 ))}
             </div>
