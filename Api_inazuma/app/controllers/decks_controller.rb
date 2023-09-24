@@ -60,7 +60,6 @@ class DecksController < ApplicationController
   end
 
   def destroycard
-    puts "test"
     puts card_params
     if card_params["type"] == "starting"
       puts "starting detected"
