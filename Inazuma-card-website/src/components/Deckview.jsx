@@ -109,7 +109,7 @@ function Deckview() {
                     </tr>
                 </tbody>
             </table>
-            <select class="bg-grey" value={category} onChange={e => setCategory(e.target.value)}>
+            <select class="gradient-box enlarge" value={category} onChange={e => setCategory(e.target.value)}>
                 <option value="All">All</option>
                 <option value="starting">Starting</option>
                 <option value="reserve">Reserve</option>

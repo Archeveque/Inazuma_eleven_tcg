@@ -37,7 +37,6 @@ const Navbar = () => {
       <div class="alignrow">
         {user.isLoggedIn ? (
           <div class="alignrow">
-            User n°{user.id}
             <Logout />
           </div>
         ) : (
