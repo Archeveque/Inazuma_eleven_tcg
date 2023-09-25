@@ -348,7 +348,7 @@ a {
   .container {
     margin: 20px;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid transparent;
     border-radius: 5px;
     background-color: initial;
   }
