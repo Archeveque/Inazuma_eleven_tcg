@@ -8,18 +8,12 @@
     text-align: center;
     background-color:#282c34;
     color: white;
-    font-size:28px;
+    font-size:26px;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  intro {
-    line-height: 1.5;
-    margin-bottom: 30px;
-    text-align: center;
-    max-width: 2000px;
-  }
 /* ==================== Navbar ==================== */
 nav {
   padding:10px;
@@ -249,7 +243,14 @@ a {
   }
 
 /* ==================== Home List ==================== */ 
-  .tabs-vertical {
+  .home {
+    text-align: center;
+    background-color:#282c34;
+    color: white;
+    font-size:30px;
+  }
+
+.tabs-vertical {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -351,13 +352,6 @@ a {
     border: 1px solid transparent;
     border-radius: 5px;
     background-color: initial;
-  }
-  
-  .bg-primary {
-    color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
   }
   
   select {

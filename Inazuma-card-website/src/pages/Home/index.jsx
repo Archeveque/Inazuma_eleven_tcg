@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 
 function Home  () {
     return (
-        <div>
+        <div class="home container">
         <h1>Welcome to the Inazuma Eleven Card Game</h1>
         <p>
         Inazuma Eleven is the ultimate source for everything related to card decks in the Inazuma Eleven game. Whether you are a beginner or an experienced player, you will find all the information you need here to create strategic decks and improve your skills in matches.
