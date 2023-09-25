@@ -3,7 +3,7 @@ class DecksController < ApplicationController
 
   # GET /decks
   def index
-    @decks = Deck.all
+    @decks = Deck.where(user_id: params[:user_id])
 
     render json: @decks
   end

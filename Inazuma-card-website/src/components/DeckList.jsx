@@ -27,7 +27,7 @@ function DeckList() {
 
   useEffect(() => {
     const fetchDecks = () => {
-      fetch("https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks", {
+      fetch(`https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks?user_id=${user.id}`, {
         method: "get",
         headers: {
           "Content-Type": "application/json",
@@ -40,6 +40,7 @@ function DeckList() {
         });
       }
       fetchDecks()
+    
   }, []);
   const handlenewDeck = async (event) => {
     event.preventDefault();
