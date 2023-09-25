@@ -4,17 +4,17 @@ import { userAtom } from '../atom';
 import Cookies from 'js-cookie';
 import { Navigate } from 'react-router-dom';
 
-
 function Login() {
   const [, setUser] = useAtom(userAtom);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Ajout d'un nouvel état
 
   const handleLogin = async (event) => {
     event.preventDefault();
 
-    // fetch request for autentification
+    // fetch request for authentication
     try {
       const response = await fetch('https://inazuma-tcg-api-879bee6c850b.herokuapp.com/users/sign_in', {
         method: 'POST',
@@ -38,6 +38,7 @@ function Login() {
         setUser({
           isLoggedIn: true,
         });
+        setIsAuthenticated(true);  // Modification de l'état lors d'une authentification réussie
       } else {
         setError('Incorrect credentials');
       }
@@ -45,6 +46,10 @@ function Login() {
       setError('An error occured');
     }
   };
+
+  if (isAuthenticated) {
+    return <Navigate to="/Catalog" />;  // Redirection vers le catalogue si l'authentification est réussie
+  }
 
   return (
     <div class="login bg-grey bordered centered shadowed">
