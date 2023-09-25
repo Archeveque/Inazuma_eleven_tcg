@@ -8,14 +8,13 @@ function DeckList() {
   const [decks, setDecks] = useState([]);
   const [name, setName] = useState([]);
   const [error, setError] = useState('');
-  const [user] = useAtom(userAtom);
-  const [, setUser] = useAtom(userAtom);
+  const [user, setUser] = useAtom(userAtom);
 
   useEffect(() => {
     const token = Cookies.get('token');
     const id = Cookies.get('id');
 
-    if (token) {
+    if (token && id) {
       setUser({
         id: id,
         isLoggedIn: true,
@@ -24,28 +23,36 @@ function DeckList() {
     }
   }, []);
 
-
   useEffect(() => {
-    const fetchDecks = () => {
-      fetch(`https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks?user_id=${user.id}`, {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((responseData) => {
-          console.log(responseData)
-          setDecks(responseData);
+    const fetchDecks = async () => {
+      try {
+        const response = await fetch(`https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks?user_id=${user.id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
+
+        if (response.ok) {
+          const responseData = await response.json();
+          setDecks(responseData);
+        } else {
+          throw new Error('Failed to fetch decks');
+        }
+      } catch (err) {
+        setError(err.message || 'An error occurred');
       }
-      fetchDecks()
+    };
+
+    if (user.id) {
+      fetchDecks();
+    }
     
-  }, []);
+  }, [user.id]);
+
   const handlenewDeck = async (event) => {
     event.preventDefault();
 
-    // Post request for creating a new deck
     try {
       const response = await fetch('https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks', {
         method: 'POST',
@@ -61,15 +68,15 @@ function DeckList() {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        window.location.reload(false);
+        window.location.reload();
       } else {
-        setError('Incorrect credentials');
+        throw new Error('Failed to create deck');
       }
-    } catch (error) {
-      setError('An error occured');
+    } catch (err) {
+      setError(err.message || 'An error occurred');
     }
-  }
+  };
+
   const handledeletedeck = async (deckId) => {
     try {
       const response = await fetch(`https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/${deckId}`, {
@@ -79,51 +86,50 @@ function DeckList() {
           'Authorization': `Bearer ${user.token}` 
         },
       });
-  
+
       if (response.ok) {
-        window.location.reload(false);
+        window.location.reload();
       } else {
-        setError('Unable to delete deck');
+        throw new Error('Failed to delete deck');
       }
-    } catch (error) {
-      setError('An error occurred');
+    } catch (err) {
+      setError(err.message || 'An error occurred');
     }
-  }
-  
+  };
 
-
-return (
-  <div>
-  {user.isLoggedIn ? (
-  <div class="container bordered align-top">
-    {decks.map((data) => (
-      <div class="deck-display" key={data.id}>
-        <img src={deckicon} width="190px" title={data.name} alt={data.name}></img>
-        <a class="btn bg-secondary" href={"/deckbuilder/" +data.id}>edit Deck </a>
-        <p>{data.name + data.id}</p>
-        <button class="bg-primary" onClick={() => handledeletedeck(data.id)}>delete</button>
+  return (
+    <div>
+      {user.isLoggedIn ? (
+        <div className="container bordered align-top">
+          {decks.map((data) => (
+            <div className="deck-display" key={data.id}>
+              <img src={deckicon} width="190px" title={data.name} alt={data.name}></img>
+              <a className="btn bg-secondary" href={`/deckbuilder/${data.id}`}>edit Deck </a>
+              <p>{data.name + data.id}</p>
+              <button className="bg-primary" onClick={() => handledeletedeck(data.id)}>delete</button>
+            </div>
+          ))}
+          {error && <p>{error}</p>}
+          <form onSubmit={handlenewDeck}>
+            <input
+              type="text"
+              placeholder="Deck Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+            <br></br>
+            <button className="bg-primary" type="submit">Create new deck</button>
+          </form>
         </div>
-      ))}
-      {error && <p>{error}</p>}
-      <form onSubmit={handlenewDeck}>
-        <input
-          type="text"
-          placeholder="Deck Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <br></br>
-        <button class="bg-primary" type="submit">Create new deck</button>
-      </form>
-  </div>
-  ) : (
-    <div class="container">
-      <p>You aren't logged, You need to login to create and edit your decks</p>
-      <a class="bg-secondary btn" href="/login">Login</a>
+      ) : (
+        <div className="container">
+          <p>You aren't logged, You need to login to create and edit your decks</p>
+          <a className="bg-secondary btn" href="/login">Login</a>
+        </div>
+      )}
     </div>
-  )}</div>
   )
 }
 
-export default DeckList
+export default DeckList;
