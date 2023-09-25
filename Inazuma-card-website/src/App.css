@@ -3,11 +3,22 @@
     background-color:#282c34;
     color: white;
   }
+
   body {
     text-align: center;
     background-color:#282c34;
     color: white;
-    font-size:20px;
+    font-size:28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  intro {
+    line-height: 1.5;
+    margin-bottom: 30px;
+    text-align: center;
+    max-width: 2000px;
   }
 /* ==================== Navbar ==================== */
 nav {
@@ -236,6 +247,39 @@ a {
     background-color: #44ab5a;
     color: white;
   }
+
+/* ==================== Home List ==================== */ 
+  .tabs-vertical {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #333;
+    border-right: 2px solid #FFA500;
+  }
+  
+  .tabs-vertical li {
+    margin: 0;
+    text-align: center;
+  }
+  
+  .tabs-vertical a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tabs-vertical a:hover {
+    background-color: #555;
+  }
+  
+  .tabs-vertical:hover .dropbtn {
+    background-color: #555;
+  }
+
+
 /* ==================== Cards & Decks Kingdom ==================== */
 
   .card-display{
@@ -297,6 +341,35 @@ a {
   .rare:hover:before {
     left: 250px;
     background: rgba(255, 255, 255, 0.2);
+  }
+
+
+  /* ==================== Catalog ==================== */ 
+  .container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: initial;
+  }
+  
+  .bg-primary {
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 10px;
+  }
+  
+  option {
+    background-color: #fff;
+    color: #333;
   }
 
 /* ==================== Enlarge Images ==================== */ 

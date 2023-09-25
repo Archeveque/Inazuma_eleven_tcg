@@ -166,9 +166,11 @@ function CardListDeck() {
         {cards.map((data) => (
       <div className="card-box " key={"card" + data.cardid}>
         <img width="100%" src={data.picture} title={data.name} alt={data.name} onClick={() => handleImageClick(data.picture)} ></img>
+
         {deck.some(deckCard => deckCard.cardid === data.cardid) ? 
           <span>In the deck</span> : 
           <button onClick={() => handleAddToDeck(data)}>Add to deck</button>}
+
       </div>
     ))}
 
