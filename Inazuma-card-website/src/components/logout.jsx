@@ -19,7 +19,7 @@ function LogoutButton() {
   };
 
   return (
-    <button class="bg-secondary" onClick={handleLogout}>Déconnexion</button>
+    <button class="bg-secondary" onClick={handleLogout}>Logout</button>
   );
 }
 

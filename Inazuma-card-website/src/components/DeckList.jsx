@@ -105,7 +105,7 @@ function DeckList() {
             <div className="deck-display" key={data.id}>
               <img src={deckicon} width="190px" title={data.name} alt={data.name}></img>
               <a className="btn bg-secondary" href={`/deckbuilder/${data.id}`}>edit Deck </a>
-              <p>{data.name + data.id}</p>
+              <p>{data.name}</p>
               <button className="bg-primary" onClick={() => handledeletedeck(data.id)}>delete</button>
             </div>
           ))}
