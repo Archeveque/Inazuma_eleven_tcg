@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 
 
-function CardListDeck(props) {
+function CardListDeck() {
   const [cards, setCards] = useState([]);
-  const [category, setCategory] = useState('allcards');
+  const [category, setCategory] = useState('allcards');  // valeur par défaut
   const [position, setPosition] = useState('All');
   const [element, setElement] = useState('All');
   const [team, setTeam] = useState('All');
@@ -15,98 +15,107 @@ function CardListDeck(props) {
   const API_URL = "https://inazuma-tcg-api-879bee6c850b.herokuapp.com";
 
   useEffect(() => {
-    const fetchDeckCards = async () => {
-      try {
-        const response = await fetch(`${API_URL}/decks/${id}/cards`);
-        if (!response.ok) throw new Error("Failed to fetch deck cards");
-        const deckData = await response.json();
-        setDeck(deckData);
-      } catch (error) {
-        console.error("There was an error fetching the deck cards:", error);
-      }
-    };
-
     const fetchCards = async () => {
       try {
-        const response = await fetch(`${API_URL}/${category}`);
-        if (!response.ok) throw new Error("Failed to fetch cards");
-        
-        let cardarray = await response.json();
-        cardarray = cardarray.filter(card => !deck.some(deckCard => deckCard.cardid === card.cardid)); // exclure les cartes déjà dans le deck
-        cardarray = filterByCriteria(cardarray, { position, element, team });
-        cardarray = sortByCriteria(cardarray, sortby);
-        
-        setCards(cardarray);
+        const response = await fetch(`${API_URL}/${category}`, {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch cards");
+        }
+
+        const responseData = await response.json();
+        let cardarray= responseData;
+        if (position !== "All"){
+          cardarray = (findCardPosition(cardarray, position));
+        }
+        if (element !== "All"){
+          cardarray = (findCardElement(cardarray, element));
+        }
+        if (team !== "All"){
+          cardarray = (findCardTeam(cardarray, team));
+        }
+        cardarray = SortingCards(cardarray,sortby)
+        setCards(cardarray)
       } catch (error) {
         console.error("There was an error fetching the cards:", error);
       }
     };
 
-    fetchDeckCards();
     fetchCards();
-  }, [category, position, element, team, sortby, id, deck]);
-  
-  function sortByCriteria(array, sortby) {
-    switch (sortby) {
+  }, [category,position,element,team,sortby]);
+
+  function SortingCards(array, sortby){
+    switch(sortby){
       case 'number':
-        return array.sort((a, b) => (a.cardid > b.cardid) ? 1 : -1);
+         return array.sort((a, b) => (a.cardid > b.cardid) ? 1 : -1);
       case 'sp':
-        return array.sort((a, b) => (a.sp > b.sp) ? 1 : -1);
-      case 'level':
-        return array.sort((a, b) => (a.level > b.level) ? 1 : -1);
-      case 'alph':
-        return array.sort((a, b) => a.name.localeCompare(b.name));
-      default:
-        return array;
-    }
+        return array.sort((a, b) => (a.sp > b.sp) ? 1 : -1); 
+        case 'level':
+          return array.sort((a, b) => (a.level > b.level) ? 1 : -1); 
+          case 'alph':
+            console.log(array.sort((a, b) => a.name.localeCompare(b.name)))
+            return array.sort((a, b) => (a.name.toLowerCase > b.name.toLowerCase) ? 1 : -1); 
+    }        
   }
-
-  function filterByCriteria(array, criteria) {
-    if (criteria.position && criteria.position !== "All") {
-      array = array.filter(card => card.position === criteria.position);
-    }
-    if (criteria.element && criteria.element !== "All") {
-      array = array.filter(card => card.element === criteria.element);
-    }
-    if (criteria.team && criteria.team !== "All") {
-      array = array.filter(card => card.team === criteria.team);
-    }
-    return array;
+  // filters //
+  function findCardPosition(array, position) {
+    return array.filter(element =>element.position === position);
   }
-
+  function findCardElement(array, element) {
+    return array.filter(card =>card.element === element);
+  }
+  function findCardTeam(array, team) {
+    return array.filter(card =>card.team === team);
+  }
+  // Adding a card to a deck//
   const handleAddToDeck = async (card) => {
+      
+    console.log(`Adding card with id ${card.cardid} to deck#${id}...`);
+  
+    // Post request for adding a card to the deck
     try {
-      const response = await fetch(`${API_URL}/decks/${id}`, {
+      const response = await fetch(`https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/${id}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
           card: {
-            id: card.cardid,
-            type: card.cardtype,
+            id:card.cardid,
+            type:card.cardtype,
             deckid: id,
           }
-        })
+        }),
       });
   
       if (response.ok) {
-        const newDeck = [...deck, card];
-        setDeck(newDeck);
-        
-        // Remove the card from the available cards list
-        const newCards = cards.filter(c => c.cardid !== card.cardid);
-        setCards(newCards);
+        const data = await response.json();
+        // Mettez à jour l'état du deck
+        setDeck(prevDeck => [...prevDeck, card]);
       } else {
-        console.error('Failed to add card to deck');
+        console.log('Incorrect credentials');
       }
     } catch (error) {
-      console.error('An error occurred:', error);
+      console.log('An error occured');
     }
-};
+  }
+  
+    const [enlargedImage, setEnlargedImage] = useState(null);
 
+    const handleImageClick = (imageUrl) => {
+      setEnlargedImage(imageUrl);
+    };
+    
+    const closeEnlargedImage = () => {
+      setEnlargedImage(null);
+    };
+    
 
-  const [enlargedImage, setEnlargedImage] = useState(null);
-  const handleImageClick = imageUrl => setEnlargedImage(imageUrl);
-  const closeEnlargedImage = () => setEnlargedImage(null);    
   return (
     <div className="container bordered ">
       <div class="bg-primary">
@@ -162,8 +171,6 @@ function CardListDeck(props) {
           <button onClick={() => handleAddToDeck(data)}>Add to deck</button>}
       </div>
     ))}
-
-    
 
   </div>
   {enlargedImage && (
