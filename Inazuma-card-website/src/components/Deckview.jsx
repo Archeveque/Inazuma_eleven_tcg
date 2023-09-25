@@ -20,40 +20,36 @@ function Deckview() {
         .then((responseData) => {
             responseData.sort((a, b) => (a.cardid > b.cardid) ? 1 : -1);
             setDecks(responseData);
-            let cardarray= responseData;
-            if (category !== "All"){
-                cardarray = (findCardType(cardarray, category));
-              }
-              console.log(cardarray)
-            setCards(cardarray)
+            let cardarray = responseData;
+            if (category !== "All") {
+                cardarray = findCardType(cardarray, category);
+            }
+            console.log(cardarray);
+            setCards(cardarray);
         })
         .catch(error => {
             console.error("There was an error fetching the data:", error);
         });
     }
 
-        const handleRemoveFromDeck = async (card) => {
-      
-            console.log(`Adding card with id ${card.cardid} to deck#${id}...`);
-        
-            // Post request for creating a new deck
-            
-              const response = await fetch(`https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/${id}/destroycard`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  card: {
-                    id:card.cardid,
-                    type:card.cardtype,
+    const handleRemoveFromDeck = async (card) => {
+        console.log(`Removing card with id ${card.cardid} from deck#${id}...`);
+        const response = await fetch(`${API_URL}/decks/${id}/destroycard`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                card: {
+                    id: card.cardid,
+                    type: card.cardtype,
                     deckid: id,
-                  }
-                }),
-              });
-            
-            fetchDecks();
-          }
+                }
+            }),
+        });
+        
+        fetchDecks();
+    }
 
     useEffect(() => {
         fetchDecks();
@@ -120,6 +116,7 @@ function Deckview() {
                 <option value="technique">Technique</option>
                 <option value="goal">Goal</option>
       </select>
+        
             <div className="card-display">
 
                 {cards.map((data, index) => (
@@ -138,6 +135,7 @@ function Deckview() {
                 </div>
             )}
         </div>
+        
     )
 }
 
