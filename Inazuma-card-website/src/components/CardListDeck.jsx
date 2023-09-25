@@ -118,7 +118,7 @@ function CardListDeck() {
 
   return (
     <div className="container bordered ">
-      <div class="bg-primary">
+      <div class="bg-primary text-right">
       Sort by:&nbsp;
       <select class="bg-grey" value={sortby} onChange={e => setSortby(e.target.value)}>
         <option value="number">number</option>
@@ -126,6 +126,7 @@ function CardListDeck() {
         <option value="level">level</option>
         <option value="alph">Alphabetical</option>
       </select>
+      <br></br>
         Filter:&nbsp;
         position:
       <select class="bg-grey" value={position} onChange={e => setPosition(e.target.value)}>
@@ -134,7 +135,7 @@ function CardListDeck() {
         <option value="MF">Midfielder</option>
         <option value="DF">Defender</option>
       </select>
-      element:
+      &nbsp;element:
       <select class="bg-grey" value={element} onChange={e => setElement(e.target.value)}>
         <option value="All">All</option>
         <option value="Fire">Fire</option>
@@ -143,7 +144,7 @@ function CardListDeck() {
         <option value="Speed">Speed</option>
         <option value="None">None</option>
       </select>
-      Type:
+      &nbsp;Type:
       <select class="bg-grey" value={category} onChange={e => setCategory(e.target.value)}>
         <option value="allcards">All</option>
         <option value="starting_cards">Starting</option>
@@ -151,7 +152,7 @@ function CardListDeck() {
         <option value="technique_cards">Technique</option>
         <option value="goal_cards">Goal</option>
       </select>
-      Team:
+      &nbsp;Team:
       <select class="bg-grey" value={team} onChange={e => setTeam(e.target.value)}>
         <option value="All">All</option>
         <option value="Raimon">Raimon</option>

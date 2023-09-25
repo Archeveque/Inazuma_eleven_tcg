@@ -8,10 +8,7 @@
     text-align: center;
     background-color:#282c34;
     color: white;
-    font-size:26px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    font-size:20px;
   }
 
 /* ==================== Navbar ==================== */
@@ -110,10 +107,10 @@ a {
     background-color: black;
     color: white;
   }
-.bg-grey{
-  background-color: rgb(24, 24, 24);
-  color: white;
-}
+  .bg-grey{
+    background-color: rgb(24, 24, 24);
+    color: white;
+  }
 
 /* ==================== Components ==================== */
   .alignrow {
@@ -182,6 +179,8 @@ a {
     background: rgb(221,3,3);
     background: linear-gradient(90deg, rgba(221,3,3,1) 0%, rgba(255,109,0,1) 24%, rgba(179,0,0,1) 100%);
     padding:10px;
+    color: white;
+    font-size:25px;
   }
   .align-top{
     display: flex;
@@ -193,6 +192,9 @@ a {
   }
   .w200p{
     width:200px;
+  }
+  .text-right{
+    text-align: start;
   }
 /* ==================== Button territory ==================== */
   button{
@@ -310,7 +312,7 @@ a {
     border-radius: 4px;
   }
   .card-box-deck{
-    width:120px;
+    width:128px;
     box-shadow: 10px 10px 5px rgb(17, 17, 17) ;
     margin-bottom: 20px;
     margin-right: 2px;
@@ -343,28 +345,11 @@ a {
     left: 250px;
     background: rgba(255, 255, 255, 0.2);
   }
+  .enlarge{
+    width: 100%;
+    text-align: center;
+  }
 
-
-  /* ==================== Catalog ==================== */ 
-  .container {
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    background-color: initial;
-  }
-  
-  select {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-right: 10px;
-  }
-  
-  option {
-    background-color: #fff;
-    color: #333;
-  }
 
 /* ==================== Enlarge Images ==================== */ 
 .card-box img {
