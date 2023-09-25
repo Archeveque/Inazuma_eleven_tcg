@@ -248,7 +248,7 @@ a {
     color: white;
   }
 
-
+/* ==================== Home List ==================== */ 
   .tabs-vertical {
     list-style-type: none;
     padding: 0;
@@ -341,6 +341,35 @@ a {
   .rare:hover:before {
     left: 250px;
     background: rgba(255, 255, 255, 0.2);
+  }
+
+
+  /* ==================== Catalog ==================== */ 
+  .container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: initial;
+  }
+  
+  .bg-primary {
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 10px;
+  }
+  
+  option {
+    background-color: #fff;
+    color: #333;
   }
 
 /* ==================== Enlarge Images ==================== */ 
