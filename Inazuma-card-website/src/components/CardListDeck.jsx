@@ -9,6 +9,8 @@ function CardListDeck() {
   const [element, setElement] = useState('All');
   const [team, setTeam] = useState('All');
   const [sortby, setSortby] = useState('number');
+  const [deck, setDeck] = useState([]);
+
   let { id } = useParams();
   const API_URL = "https://inazuma-tcg-api-879bee6c850b.herokuapp.com";
 
@@ -71,35 +73,38 @@ function CardListDeck() {
     return array.filter(card =>card.team === team);
   }
   // Adding a card to a deck//
-    const handleAddToDeck = async (card) => {
+  const handleAddToDeck = async (card) => {
       
-      console.log(`Adding card with id ${card.cardid} to deck#${id}...`);
+    console.log(`Adding card with id ${card.cardid} to deck#${id}...`);
   
-      // Post request for creating a new deck
-      try {
-        const response = await fetch(`https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/${id}`, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            card: {
-              id:card.cardid,
-              type:card.cardtype,
-              deckid: id,
-            }
-          }),
-        });
+    // Post request for adding a card to the deck
+    try {
+      const response = await fetch(`https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          card: {
+            id:card.cardid,
+            type:card.cardtype,
+            deckid: id,
+          }
+        }),
+      });
   
-        if (response.ok) {
-          const data = await response.json();
-        } else {
-          console.log('Incorrect credentials');
-        }
-      } catch (error) {
-        console.log('An error occured');
+      if (response.ok) {
+        const data = await response.json();
+        // Mettez à jour l'état du deck
+        setDeck(prevDeck => [...prevDeck, card]);
+      } else {
+        console.log('Incorrect credentials');
       }
+    } catch (error) {
+      console.log('An error occured');
     }
+  }
+  
     const [enlargedImage, setEnlargedImage] = useState(null);
 
     const handleImageClick = (imageUrl) => {
@@ -156,13 +161,19 @@ function CardListDeck() {
       </select>
       
       </div>
+      
     <div class="card-display">
-      {cards.map((data) => (
+        {cards.map((data) => (
       <div className="card-box " key={"card" + data.cardid}>
         <img width="100%" src={data.picture} title={data.name} alt={data.name} onClick={() => handleImageClick(data.picture)} ></img>
-        <button onClick={() => handleAddToDeck(data)}>Add to deck</button>
+
+        {deck.some(deckCard => deckCard.cardid === data.cardid) ? 
+          <span>In the deck</span> : 
+          <button onClick={() => handleAddToDeck(data)}>Add to deck</button>}
+
       </div>
     ))}
+
   </div>
   {enlargedImage && (
     <div className="modal" onClick={closeEnlargedImage}>
