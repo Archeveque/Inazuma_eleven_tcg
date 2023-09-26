@@ -18,7 +18,7 @@ return (
           Our goal is to create a website that compiles the cards of the collectible card game Inazuma Eleven, a game that has faded into obscurity and has very few traces on the internet. The site also aims to be an advanced deck creation tool.
         </p>
         <p>
-          This website was thinking and conceived by Archeveque and developed by Damicode and Alexisdpr.
+          This website was thinking and conceived by Archeveque and developed with Damicode and Alexisdpr.
         </p>
         <p>
           You can find below our GitHub repositories for our various projects throughout The Hacking Project :
