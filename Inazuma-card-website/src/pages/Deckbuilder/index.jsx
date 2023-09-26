@@ -7,7 +7,7 @@ const Decks = () => {
 
     <table>
         <tr>
-          <td  width="110%" class="align-top">
+          <td class="align-top">
             <DeckManager />
           </td>
           {/* <td  width="45%" class="align-end" >

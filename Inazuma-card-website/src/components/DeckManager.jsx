@@ -187,7 +187,7 @@ function DeckManager() {
         <div className="deck-manager-container" style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
     
             {/* Cartes disponibles */}
-            <div className="container bordered" style={{ width: "50%", marginRight: "10px" }}>
+            <div className="container bordered" style={{ width: "53%", marginRight: "5px" }}>
                 <div className="bg-primary text-right">
                     Sort by:&nbsp;
                     <select className="bg-grey" value={sortby} onChange={e => setSortby(e.target.value)}>
@@ -251,7 +251,7 @@ function DeckManager() {
             </div>
     
             {/* DeckBuilding */}
-            <div className="container bordered lign-end" style={{ width: "48%" }}>
+            <div className="container bordered lign-end" style={{ width: "38%" }}>
                 <div className="gradient-box">
                     <p>Deckbuilding</p>
                 </div>
@@ -282,7 +282,7 @@ function DeckManager() {
                     </tbody>
                 </table>
                 <select className="gradient-box enlarge" value={category} onChange={e => setCategory(e.target.value)}>
-                    <option value="All">All</option>
+                    <option value="allcards">All</option>
                     <option value="starting">Starting</option>
                     <option value="reserve">Reserve</option>
                     <option value="technique">Technique</option>
