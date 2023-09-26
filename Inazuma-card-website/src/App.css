@@ -351,6 +351,24 @@ a {
   }
 
 
+/* ==================== About ==================== */ 
+
+.About {
+  text-align: center;
+  background-color:#282c34;
+  color: white;
+  font-size:30px;
+}
+
+horizontal-list {
+  display: flex;
+  flex-direction: row;
+}
+
+horizontal-list span {
+  margin-right: 10px;
+}
+
 /* ==================== Enlarge Images ==================== */ 
 .card-box img {
   width: 180px;  
