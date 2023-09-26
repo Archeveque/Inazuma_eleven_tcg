@@ -1,17 +1,18 @@
-import Deckview from '../../components/Deckview';
-import CardListDeck from '../../components/CardListDeck';
+// import Deckview from '../../components/Deckview';
+// import CardListDeck from '../../components/CardListDeck';
+import DeckManager from '../../components/DeckManager';
 
 const Decks = () => {
   return (
 
     <table>
         <tr>
-          <td  width="95%" class="align-top">
-            <CardListDeck />
+          <td class="align-top">
+            <DeckManager />
           </td>
-          <td  width="45%" class="align-end" >
+          {/* <td  width="45%" class="align-end" >
             <Deckview />
-          </td>
+          </td> */}
         </tr>
     </table>
 

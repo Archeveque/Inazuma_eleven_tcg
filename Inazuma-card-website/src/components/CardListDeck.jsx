@@ -9,6 +9,8 @@ function CardListDeck() {
   const [element, setElement] = useState('All');
   const [team, setTeam] = useState('All');
   const [sortby, setSortby] = useState('number');
+  const [deck, setDeck] = useState([]);
+
   let { id } = useParams();
   const API_URL = "https://inazuma-tcg-api-879bee6c850b.herokuapp.com";
 
@@ -71,35 +73,38 @@ function CardListDeck() {
     return array.filter(card =>card.team === team);
   }
   // Adding a card to a deck//
-    const handleAddToDeck = async (card) => {
+  const handleAddToDeck = async (card) => {
       
-      console.log(`Adding card with id ${card.cardid} to deck#${id}...`);
+    console.log(`Adding card with id ${card.cardid} to deck#${id}...`);
   
-      // Post request for creating a new deck
-      try {
-        const response = await fetch(`https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/${id}`, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            card: {
-              id:card.cardid,
-              type:card.cardtype,
-              deckid: id,
-            }
-          }),
-        });
+    // Post request for adding a card to the deck
+    try {
+      const response = await fetch(`https://inazuma-tcg-api-879bee6c850b.herokuapp.com/decks/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          card: {
+            id:card.cardid,
+            type:card.cardtype,
+            deckid: id,
+          }
+        }),
+      });
   
-        if (response.ok) {
-          const data = await response.json();
-        } else {
-          console.log('Incorrect credentials');
-        }
-      } catch (error) {
-        console.log('An error occured');
+      if (response.ok) {
+        const data = await response.json();
+        // Mettez à jour l'état du deck
+        setDeck(prevDeck => [...prevDeck, card]);
+      } else {
+        console.log('Incorrect credentials');
       }
+    } catch (error) {
+      console.log('An error occured');
     }
+  }
+  
     const [enlargedImage, setEnlargedImage] = useState(null);
 
     const handleImageClick = (imageUrl) => {
@@ -113,7 +118,7 @@ function CardListDeck() {
 
   return (
     <div className="container bordered ">
-      <div class="bg-primary">
+      <div class="bg-primary text-right">
       Sort by:&nbsp;
       <select class="bg-grey" value={sortby} onChange={e => setSortby(e.target.value)}>
         <option value="number">number</option>
@@ -121,6 +126,7 @@ function CardListDeck() {
         <option value="level">level</option>
         <option value="alph">Alphabetical</option>
       </select>
+      <br></br>
         Filter:&nbsp;
         position:
       <select class="bg-grey" value={position} onChange={e => setPosition(e.target.value)}>
@@ -129,7 +135,7 @@ function CardListDeck() {
         <option value="MF">Midfielder</option>
         <option value="DF">Defender</option>
       </select>
-      element:
+      &nbsp;element:
       <select class="bg-grey" value={element} onChange={e => setElement(e.target.value)}>
         <option value="All">All</option>
         <option value="Fire">Fire</option>
@@ -138,7 +144,7 @@ function CardListDeck() {
         <option value="Speed">Speed</option>
         <option value="None">None</option>
       </select>
-      Type:
+      &nbsp;Type:
       <select class="bg-grey" value={category} onChange={e => setCategory(e.target.value)}>
         <option value="allcards">All</option>
         <option value="starting_cards">Starting</option>
@@ -146,7 +152,7 @@ function CardListDeck() {
         <option value="technique_cards">Technique</option>
         <option value="goal_cards">Goal</option>
       </select>
-      Team:
+      &nbsp;Team:
       <select class="bg-grey" value={team} onChange={e => setTeam(e.target.value)}>
         <option value="All">All</option>
         <option value="Raimon">Raimon</option>
@@ -156,13 +162,19 @@ function CardListDeck() {
       </select>
       
       </div>
+      
     <div class="card-display">
-      {cards.map((data) => (
+        {cards.map((data) => (
       <div className="card-box " key={"card" + data.cardid}>
         <img width="100%" src={data.picture} title={data.name} alt={data.name} onClick={() => handleImageClick(data.picture)} ></img>
-        <button onClick={() => handleAddToDeck(data)}>Add to deck</button>
+
+        {deck.some(deckCard => deckCard.cardid === data.cardid) ? 
+          <span>In the deck</span> : 
+          <button onClick={() => handleAddToDeck(data)}>Add to deck</button>}
+
       </div>
     ))}
+
   </div>
   {enlargedImage && (
     <div className="modal" onClick={closeEnlargedImage}>
