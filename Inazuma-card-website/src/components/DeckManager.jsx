@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 
+
 function DeckManager() {
     const [cards, setCards] = useState([]);
     const [category, setCategory] = useState('allcards'); 
@@ -173,125 +174,72 @@ function DeckManager() {
         return array.filter(card => card.cardtype === type && card.position === position).length;
     };
     
+    // Drag ann drop settings
+
+
+
+
+
+    
     
     // Merged JSX return
     return (
-        <div className="deck-manager-container">
-                      <div className="container bordered ">
-            <div class="bg-primary text-right">
-            Sort by:&nbsp;
-            <select class="bg-grey" value={sortby} onChange={e => setSortby(e.target.value)}>
-              <option value="number">number</option>
-              <option value="sp">sp</option>
-              <option value="level">level</option>
-              <option value="alph">Alphabetical</option>
-            </select>
-            <br></br>
-              Filter:&nbsp;
-              position:
-            <select class="bg-grey" value={position} onChange={e => setPosition(e.target.value)}>
-              <option value="All">All</option>
-              <option value="FW">Forward</option>
-              <option value="MF">Midfielder</option>
-              <option value="DF">Defender</option>
-            </select>
-            &nbsp;element:
-            <select class="bg-grey" value={element} onChange={e => setElement(e.target.value)}>
-              <option value="All">All</option>
-              <option value="Fire">Fire</option>
-              <option value="Teamwork">Teamwork</option>
-              <option value="Tactic">Tactic</option>
-              <option value="Speed">Speed</option>
-              <option value="None">None</option>
-            </select>
-            &nbsp;Type:
-            <select class="bg-grey" value={category} onChange={e => setCategory(e.target.value)}>
-              <option value="allcards">All</option>
-              <option value="starting_cards">Starting</option>
-              <option value="reserve_cards">Reserve</option>
-              <option value="technique_cards">Technique</option>
-              <option value="goal_cards">Goal</option>
-            </select>
-            &nbsp;Team:
-            <select class="bg-grey" value={team} onChange={e => setTeam(e.target.value)}>
-              <option value="All">All</option>
-              <option value="Raimon">Raimon</option>
-              <option value="Royal Academy">Royal</option>
-              <option value="Inazuma KFC">KFC</option>
-              <option value="Wild">Wild</option>
-            </select>
-            
-            </div>
-            
-          <div class="card-display">
-              {cards.map((data) => (
-            <div className="card-box " key={"card" + data.cardid}>
-              <img width="100%" src={data.picture} title={data.name} alt={data.name} onClick={() => handleImageClick(data.picture)} ></img>
-      
-              <button onClick={() => handleAddToDeck(data)}>Add to deck</button>
-
-      
-            </div>
-          ))}
-      
-        </div>
-        {enlargedImage && (
-          <div className="modal" onClick={closeEnlargedImage}>
-            <div className="modal-content-container" onClick={(e) => e.stopPropagation()}>
-              <span className="close" onClick={closeEnlargedImage}>&times;</span>
-              <img className="modal-content" src={enlargedImage} />
-            </div>
-          </div>
-        )}
-        </div>
-            
-        <div className="container bordered  lign-end">
-                <div className="gradient-box">
-                    <p>Deckbuilding</p>
+        <div className="deck-manager-container" style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+    
+            {/* Cartes disponibles */}
+            <div className="container bordered" style={{ width: "50%", marginRight: "10px" }}>
+                <div className="bg-primary text-right">
+                    Sort by:&nbsp;
+                    <select className="bg-grey" value={sortby} onChange={e => setSortby(e.target.value)}>
+                        <option value="number">number</option>
+                        <option value="sp">sp</option>
+                        <option value="level">level</option>
+                        <option value="alph">Alphabetical</option>
+                    </select>
+                    <br />
+                    Filter:&nbsp;
+                    position:
+                    <select className="bg-grey" value={position} onChange={e => setPosition(e.target.value)}>
+                        <option value="All">All</option>
+                        <option value="FW">Forward</option>
+                        <option value="MF">Midfielder</option>
+                        <option value="DF">Defender</option>
+                    </select>
+                    &nbsp;element:
+                    <select className="bg-grey" value={element} onChange={e => setElement(e.target.value)}>
+                        <option value="All">All</option>
+                        <option value="Fire">Fire</option>
+                        <option value="Teamwork">Teamwork</option>
+                        <option value="Tactic">Tactic</option>
+                        <option value="Speed">Speed</option>
+                        <option value="None">None</option>
+                    </select>
+                    &nbsp;Type:
+                    <select className="bg-grey" value={category} onChange={e => setCategory(e.target.value)}>
+                        <option value="allcards">All</option>
+                        <option value="starting_cards">Starting</option>
+                        <option value="reserve_cards">Reserve</option>
+                        <option value="technique_cards">Technique</option>
+                        <option value="goal_cards">Goal</option>
+                    </select>
+                    &nbsp;Team:
+                    <select className="bg-grey" value={team} onChange={e => setTeam(e.target.value)}>
+                        <option value="All">All</option>
+                        <option value="Raimon">Raimon</option>
+                        <option value="Royal Academy">Royal</option>
+                        <option value="Inazuma KFC">KFC</option>
+                        <option value="Wild">Wild</option>
+                    </select>
                 </div>
-                <table className="bg-grey bordered" width="100%">
-                    <tbody>
-                        <tr>
-                            <td> </td><td> Deck size : {decks.length-findCardTypeNum(decks,"starting")}/30 </td>
-                        </tr>
-                        <tr>
-                            <td></td><td>Reserve: {findCardTypeNum(decks,"reserve")}</td>
-                        </tr>
-                        <tr>
-                            <td>Starting deck: {findCardTypeNum(decks,"starting")}/10</td>
-                            <td>
-                                FW:{findCardPosition(decks,"reserve","FW")} 
-                                MF:{findCardPosition(decks,"reserve","MF")} 
-                                DF:{findCardPosition(decks,"reserve","DF")}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                FW:{findCardPosition(decks,"starting","FW")} 
-                                MF:{findCardPosition(decks,"starting","MF")} 
-                                DF:{findCardPosition(decks,"starting","DF")}
-                            </td>
-                            <td>Technique: {findCardTypeNum(decks,"technique")}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <select class="gradient-box enlarge" value={category} onChange={e => setCategory(e.target.value)}>
-                    <option value="All">All</option>
-                    <option value="starting">Starting</option>
-                    <option value="reserve">Reserve</option>
-                    <option value="technique">Technique</option>
-                    <option value="goal">Goal</option>
-          </select>
-            
-          <div className="card-display">
-    {deckCards.map((data, index) => (
-        <div className="card-box-deck " key={index}>
-            <img width="100%" src={data.picture} title={data.name} alt={data.name} onClick={() => handleImageClick(data.picture)} />
-            <button onClick={() => handleRemoveFromDeck(data)}>Remove</button>
-        </div>
-    ))}
-</div>
-
+    
+                <div className="card-display">
+                    {cards.map((data) => (
+                        <div className="card-box" key={"card" + data.cardid}>
+                            <img width="100%" src={data.picture} title={data.name} alt={data.name} onClick={() => handleImageClick(data.picture)}></img>
+                            <button onClick={() => handleAddToDeck(data)}>Add to deck</button>
+                        </div>
+                    ))}
+                </div>
                 {enlargedImage && (
                     <div className="modal" onClick={closeEnlargedImage}>
                         <div className="modal-content-container" onClick={(e) => e.stopPropagation()}>
@@ -301,9 +249,68 @@ function DeckManager() {
                     </div>
                 )}
             </div>
-
+    
+            {/* DeckBuilding */}
+            <div className="container bordered lign-end" style={{ width: "48%" }}>
+                <div className="gradient-box">
+                    <p>Deckbuilding</p>
+                </div>
+                <table className="bg-grey bordered" width="100%">
+                    <tbody>
+                        <tr>
+                            <td></td><td> Deck size : {decks.length - findCardTypeNum(decks, "starting")}/30 </td>
+                        </tr>
+                        <tr>
+                            <td></td><td>Reserve: {findCardTypeNum(decks, "reserve")}</td>
+                        </tr>
+                        <tr>
+                            <td>Starting deck: {findCardTypeNum(decks, "starting")}/10</td>
+                            <td>
+                                FW:{findCardPosition(decks, "reserve", "FW")}
+                                MF:{findCardPosition(decks, "reserve", "MF")}
+                                DF:{findCardPosition(decks, "reserve", "DF")}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                FW:{findCardPosition(decks, "starting", "FW")}
+                                MF:{findCardPosition(decks, "starting", "MF")}
+                                DF:{findCardPosition(decks, "starting", "DF")}
+                            </td>
+                            <td>Technique: {findCardTypeNum(decks, "technique")}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <select className="gradient-box enlarge" value={category} onChange={e => setCategory(e.target.value)}>
+                    <option value="All">All</option>
+                    <option value="starting">Starting</option>
+                    <option value="reserve">Reserve</option>
+                    <option value="technique">Technique</option>
+                    <option value="goal">Goal</option>
+                </select>
+    
+                <div className="card-display">
+                    {deckCards.map((data, index) => (
+                        <div className="card-box-deck" key={index}>
+                            <img width="100%" src={data.picture} title={data.name} alt={data.name} onClick={() => handleImageClick(data.picture)} />
+                            <button onClick={() => handleRemoveFromDeck(data)}>Remove</button>
+                        </div>
+                    ))}
+                </div>
+    
+                {enlargedImage && (
+                    <div className="modal" onClick={closeEnlargedImage}>
+                        <div className="modal-content-container" onClick={(e) => e.stopPropagation()}>
+                            <span className="close" onClick={closeEnlargedImage}>&times;</span>
+                            <img className="modal-content" src={enlargedImage} />
+                        </div>
+                    </div>
+                )}
+            </div>
+    
         </div>
     )
+    
 }
 
 export default DeckManager;
