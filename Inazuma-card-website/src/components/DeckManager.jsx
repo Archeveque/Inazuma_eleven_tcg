@@ -89,11 +89,12 @@ function DeckManager() {
     };
 
     const filterDeckCards = (array) => {
-        if (category !== "All") {
+        if (category !== "allcards") {
             return array.filter(element => element.cardtype === category);
         }
         return array;
     };
+    
 
     const handleAddToDeck = async (card) => {
         console.log(`Adding card with id ${card.cardid} to deck#${id}...`);
