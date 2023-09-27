@@ -258,10 +258,10 @@ function DeckManager() {
                 <table className="bg-grey bordered" width="100%">
                     <tbody>
                         <tr>
-                            <td></td><td> Deck size : {decks.length - findCardTypeNum(decks, "starting")}/30 </td>
+                            <td></td><td> Deck size : {findCardTypeNum(decks,"reserve") + findCardTypeNum(decks, "technique")}/30 </td>
                         </tr>
                         <tr>
-                            <td></td><td>Reserve: {findCardTypeNum(decks, "reserve")}</td>
+                            <td>Goalkeeper: {findCardTypeNum(decks,"goal")}/1,</td><td>Reserve: {findCardTypeNum(decks, "reserve")}</td>
                         </tr>
                         <tr>
                             <td>Starting deck: {findCardTypeNum(decks, "starting")}/10</td>
